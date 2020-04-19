@@ -2,21 +2,25 @@ import 'package:flutter/material.dart';
 
 class HoverIconButton extends StatefulWidget {
   final VoidCallback onPressed;
-  final IconData icon;
   final String text;
+  final IconData icon;
   final Color color;
   final Color hoverColor;
-  final contentColor;
-  final Color contentHoverColor;
+  final Color textColor;
+  final Color textHoverColor;
+  final Color iconColor;
+  final Color iconHoverColor;
 
   const HoverIconButton({
     this.onPressed,
-    this.icon,
     this.text,
+    this.icon,
     this.color,
     this.hoverColor,
-    this.contentColor,
-    this.contentHoverColor,
+    this.textColor,
+    this.textHoverColor,
+    this.iconColor,
+    this.iconHoverColor
   });
 
   @override
@@ -24,21 +28,24 @@ class HoverIconButton extends StatefulWidget {
 }
 
 class _HoverIconButtonState extends State<HoverIconButton> {
-  Color _bgColor;
-  Color _contentColor;
+  Color _color;
+  Color _textColor;
+  Color _iconColor;
 
   @override
   void initState() {
     super.initState();
 
-    _bgColor = widget.color;
-    _contentColor = widget.contentColor;
+    _color = widget.color;
+    _textColor = widget.textColor;
+    _iconColor = widget.iconColor;
   }
 
   void _handleHoveredChanged(bool value) {
     setState(() {
-      _bgColor = value ? widget.hoverColor : widget.color;
-      _contentColor = value ? widget.contentHoverColor : widget.contentColor;
+      _color = value ? widget.hoverColor : widget.color;
+      _textColor = value ? widget.textHoverColor : widget.textColor;
+      _iconColor = value ? widget.iconHoverColor : widget.iconColor;
     });
   }
 
@@ -47,7 +54,7 @@ class _HoverIconButtonState extends State<HoverIconButton> {
     List<Widget> children = [
       Icon(widget.icon,
         size: 22,
-        color: _contentColor,
+        color: _iconColor,
       ),
     ];
 
@@ -56,9 +63,8 @@ class _HoverIconButtonState extends State<HoverIconButton> {
 
       children.add(
         Text(widget.text,
-          style: Theme.of(context).textTheme.overline.copyWith(
-            fontSize: 12,
-            color: _contentColor
+          style: Theme.of(context).textTheme.button.copyWith(
+            color: _textColor,
           ),
         ),
       );
@@ -67,7 +73,7 @@ class _HoverIconButtonState extends State<HoverIconButton> {
     return Container(
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-        color: _bgColor,
+        color: _color,
         borderRadius: BorderRadius.circular(8),
       ),
       child: InkWell(

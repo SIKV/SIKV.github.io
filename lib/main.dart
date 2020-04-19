@@ -22,12 +22,26 @@ class App extends StatelessWidget {
           headline1: TextStyle(
             color: AppColors.text,
             fontWeight: FontWeight.w600,
-            fontSize: 56,
+            fontSize: 48,
           ),
-          subtitle1: TextStyle(
+          headline2: TextStyle(
             color: AppColors.text,
             fontWeight: FontWeight.w600,
             fontSize: 18,
+          ),
+          subtitle1: Theme.of(context).textTheme.overline.copyWith(
+            fontSize: 15,
+            color: AppColors.primaryLight,
+          ),
+        ),
+        tooltipTheme: TooltipThemeData(
+          verticalOffset: 32,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: AppColors.primary,
+          ),
+          textStyle: TextStyle(
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:cv/colors.dart';
-import 'package:cv/pages/experience_page.dart';
 import 'package:cv/pages/about_page.dart';
+import 'package:cv/pages/experience_page.dart';
 import 'package:cv/strings.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +40,10 @@ class _MainPageState extends State<MainPage> {
             title: Text(AppStrings.experience),
           ),
         ],
-        selectedItemColor: AppColors.accent,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: AppColors.white,
+        unselectedItemColor: AppColors.unselectedItemColor,
         backgroundColor: AppColors.primary,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,

@@ -8,6 +8,7 @@ import 'package:cv/widgets/hover_icon_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -57,8 +58,10 @@ class _AboutPageState extends State<AboutPage> {
               style: Theme.of(context).textTheme.headline1,
             ),
 
+            SizedBox(height: 8),
+
             Text(model.subhead,
-                style: Theme.of(context).textTheme.subtitle1
+              style: Theme.of(context).textTheme.subtitle1,
             ),
 
             SizedBox(height: 36),
@@ -102,7 +105,7 @@ class _AboutPageState extends State<AboutPage> {
   Widget _helloBubble(String helloText) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.accent,
+        color: AppColors.primary,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
@@ -112,7 +115,7 @@ class _AboutPageState extends State<AboutPage> {
       child: Padding(
         padding: const EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 8),
         child: Text(helloText,
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.headline2,
         ),
       ),
     );
@@ -121,54 +124,67 @@ class _AboutPageState extends State<AboutPage> {
   Widget _buttonsRow(BasicInfoModel model) {
     return Row(
       children: <Widget>[
-        _cvButton(),
+        _cvButton(() {
+          openUrl(model.cvUrl);
+        }),
 
         SizedBox(width: 16),
 
-        _socialButton(FontAwesomeIcons.linkedin, () {
+        _socialButton(FontAwesomeIcons.linkedin, AppColors.linkedInColor, () {
           openUrl(model.linkedInUrl);
         }),
 
         SizedBox(width: 16),
 
-        _socialButton(FontAwesomeIcons.github, () {
+        _socialButton(FontAwesomeIcons.github, AppColors.githubColor, () {
           openUrl(model.githubUrl);
         }),
       ],
     );
   }
 
-  Widget _socialButton(IconData icon, VoidCallback onPressed) {
+  Widget _socialButton(IconData icon, Color iconHoverColor, VoidCallback onPressed) {
     return HoverIconButton(
       onPressed: onPressed,
       icon: icon,
-      color: Colors.transparent,
-      hoverColor: Colors.white,
-      contentColor: Colors.white,
-      contentHoverColor: AppColors.accent,
+      color: AppColors.transparent,
+      hoverColor: AppColors.white,
+      iconColor: AppColors.white,
+      iconHoverColor: iconHoverColor,
     );
   }
 
-  Widget _cvButton() {
-    return HoverIconButton(
-      onPressed: () { },
-      icon: Icons.file_download,
-      text: AppStrings.downloadCV,
-      color: Colors.transparent,
-      hoverColor: Colors.white,
-      contentColor: Colors.white,
-      contentHoverColor: AppColors.accent,
+  Widget _cvButton(VoidCallback onPressed) {
+    return Tooltip(
+      message: AppStrings.downloadCV,
+      child: HoverIconButton(
+        onPressed: onPressed,
+        icon: FontAwesomeIcons.fileDownload,
+        color: AppColors.transparent,
+        hoverColor: AppColors.white,
+        iconColor: AppColors.white,
+        iconHoverColor: AppColors.primaryLight,
+      ),
     );
   }
 
   Widget _avatarWidget(String imageUrl) {
-    return CircleAvatar(
-      radius: AppDimens.avatarRadius + AppDimens.avatarBorderRadius,
-      backgroundColor: Colors.white,
-      child: CircleAvatar(
-        radius: AppDimens.avatarRadius,
-        backgroundImage: NetworkImage(imageUrl),
-        backgroundColor: AppColors.background,
+    return Container(
+      width: AppDimens.avatarSize,
+      height: AppDimens.avatarSize,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColors.primary,
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(AppDimens.avatarBorderStrokeWidth),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(AppDimens.avatarBorderRadius),
+          child: FadeInImage.memoryNetwork(
+            placeholder: kTransparentImage,
+            image: imageUrl,
+          ),
+        ),
       ),
     );
   }

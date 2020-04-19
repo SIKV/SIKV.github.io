@@ -16,6 +16,7 @@ class DataRepository {
       headline: jsonDecoded['headline'],
       subhead: jsonDecoded['subhead'],
       avatarUrl: jsonDecoded['avatar_url'],
+      cvUrl: jsonDecoded['cv_url'],
       linkedInUrl: jsonDecoded['linked_in_url'],
       githubUrl: jsonDecoded['github_url'],
     );
