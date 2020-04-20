@@ -9,7 +9,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: AppStrings.appName,
+      title: AppStrings.title,
       theme: ThemeData(
         primaryColor: AppColors.primary,
         accentColor: AppColors.accent,
