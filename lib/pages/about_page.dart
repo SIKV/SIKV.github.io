@@ -1,7 +1,7 @@
 import 'package:cv/blocs/data_bloc.dart';
 import 'package:cv/colors.dart';
 import 'package:cv/dimens.dart';
-import 'package:cv/models/basic_info_model.dart';
+import 'package:cv/models/user_model.dart';
 import 'package:cv/strings.dart';
 import 'package:cv/utils/utils.dart';
 import 'package:cv/widgets/hover_icon_button.dart';
@@ -31,8 +31,8 @@ class _AboutPageState extends State<AboutPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<BasicInfoModel>(
-        stream: _dataBloc.fetchBasicInfo(),
+    return StreamBuilder<UserModel>(
+        stream: _dataBloc.fetchUser(),
         builder: (context, snapshot) {
           return Scaffold(
             body: SafeArea(
@@ -43,7 +43,7 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 
-  Widget _contentWidget(BasicInfoModel model) {
+  Widget _contentWidget(UserModel model) {
     return Center(
       child: _rootLayout(<Widget>[
         Column(
@@ -121,7 +121,7 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 
-  Widget _buttonsRow(BasicInfoModel model) {
+  Widget _buttonsRow(UserModel model) {
     return Row(
       children: <Widget>[
         _cvButton(() {

@@ -1,4 +1,4 @@
-class BasicInfoModel {
+class UserModel {
   final String helloText;
   final String headline;
   final String subhead;
@@ -7,7 +7,7 @@ class BasicInfoModel {
   final String linkedInUrl;
   final String githubUrl;
 
-  BasicInfoModel({
+  UserModel({
     this.helloText,
     this.headline,
     this.subhead,
