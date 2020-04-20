@@ -18,10 +18,6 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage> {
   DataBloc _dataBloc;
 
-  double get _contentPadding {
-    return isPortraitOrientation(context) ? AppDimens.contentPadding / 2 : AppDimens.contentPadding;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -32,14 +28,16 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<UserModel>(
-        stream: _dataBloc.fetchUser(),
-        builder: (context, snapshot) {
-          return Scaffold(
-            body: SafeArea(
-              child: snapshot.hasData ? _contentWidget(snapshot.data) : Container(),
-            ),
-          );
-        }
+      stream: _dataBloc.fetchUser(),
+      builder: (context, snapshot) {
+        return Scaffold(
+          body: SafeArea(
+            child: snapshot.hasData
+                ? _contentWidget(snapshot.data)
+                : Container(),
+          ),
+        );
+      },
     );
   }
 
@@ -81,7 +79,7 @@ class _AboutPageState extends State<AboutPage> {
     if (isPortraitOrientation(context)) {
       return SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(_contentPadding),
+          padding: const EdgeInsets.all(AppDimens.contentPadding),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: children.reversed.toList(),
@@ -92,7 +90,7 @@ class _AboutPageState extends State<AboutPage> {
       return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(
-          padding: EdgeInsets.all(_contentPadding),
+          padding: const EdgeInsets.all(AppDimens.contentPadding),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: children,
@@ -122,24 +120,32 @@ class _AboutPageState extends State<AboutPage> {
   }
 
   Widget _buttonsRow(UserModel model) {
-    return Row(
-      children: <Widget>[
+    List<Widget> widgets = [];
+
+    if (model.cvUrl != null && model.cvUrl.isNotEmpty) {
+      widgets.addAll([
         _cvButton(() {
           openUrl(model.cvUrl);
         }),
 
-        SizedBox(width: 16),
+        SizedBox(width: 16)
+      ]);
+    }
 
-        _socialButton(FontAwesomeIcons.linkedin, AppColors.linkedInColor, () {
-          openUrl(model.linkedInUrl);
-        }),
+    widgets.addAll([
+      _socialButton(FontAwesomeIcons.linkedin, AppColors.linkedInColor, () {
+        openUrl(model.linkedInUrl);
+      }),
 
-        SizedBox(width: 16),
+      SizedBox(width: 16),
 
-        _socialButton(FontAwesomeIcons.github, AppColors.githubColor, () {
-          openUrl(model.githubUrl);
-        }),
-      ],
+      _socialButton(FontAwesomeIcons.github, AppColors.githubColor, () {
+        openUrl(model.githubUrl);
+      })
+    ]);
+
+    return Row(
+      children: widgets,
     );
   }
 
