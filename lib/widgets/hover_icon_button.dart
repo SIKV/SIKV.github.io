@@ -28,6 +28,11 @@ class HoverIconButton extends StatefulWidget {
 }
 
 class _HoverIconButtonState extends State<HoverIconButton> {
+  final double _padding = 6;
+  final double _borderRadius = 16;
+  final double _iconSize = 22;
+  final double _iconPadding = 6;
+
   Color _color;
   Color _textColor;
   Color _iconColor;
@@ -53,13 +58,13 @@ class _HoverIconButtonState extends State<HoverIconButton> {
   Widget build(BuildContext context) {
     List<Widget> children = [
       Icon(widget.icon,
-        size: 22,
+        size: _iconSize,
         color: _iconColor,
       ),
     ];
 
     if (widget.text != null) {
-      children.add(SizedBox(width: 6));
+      children.add(SizedBox(width: _iconPadding));
 
       children.add(
         Text(widget.text,
@@ -71,10 +76,10 @@ class _HoverIconButtonState extends State<HoverIconButton> {
     }
 
     return Container(
-      padding: const EdgeInsets.all(6),
+      padding: EdgeInsets.all(_padding),
       decoration: BoxDecoration(
         color: _color,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(_borderRadius),
       ),
       child: InkWell(
         onTap: widget.onPressed,

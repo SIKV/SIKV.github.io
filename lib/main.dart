@@ -9,6 +9,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: AppStrings.title,
       theme: ThemeData(
         primaryColor: AppColors.primary,
@@ -31,7 +32,7 @@ class App extends StatelessWidget {
           ),
           subtitle1: Theme.of(context).textTheme.overline.copyWith(
             fontSize: 15,
-            color: AppColors.primaryLight,
+            color: AppColors.subtitle1,
           ),
         ),
         tooltipTheme: TooltipThemeData(

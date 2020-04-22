@@ -70,7 +70,9 @@ class _AboutPageState extends State<AboutPage> {
 
         SizedBox(width: AppDimens.sectionSpacing, height: AppDimens.sectionSpacing),
 
-        _avatarWidget(model.avatarUrl),
+        _avatarWidget(model.avatarUrl, () {
+          // TODO Implement
+        }),
       ]),
     );
   }
@@ -120,6 +122,8 @@ class _AboutPageState extends State<AboutPage> {
   }
 
   Widget _buttonsRow(UserModel model) {
+    final double spacing = 24;
+
     List<Widget> widgets = [];
 
     if (model.cvUrl != null && model.cvUrl.isNotEmpty) {
@@ -128,7 +132,7 @@ class _AboutPageState extends State<AboutPage> {
           openUrl(model.cvUrl);
         }),
 
-        SizedBox(width: 16)
+        SizedBox(width: spacing)
       ]);
     }
 
@@ -137,7 +141,7 @@ class _AboutPageState extends State<AboutPage> {
         openUrl(model.linkedInUrl);
       }),
 
-      SizedBox(width: 16),
+      SizedBox(width: spacing),
 
       _socialButton(FontAwesomeIcons.github, AppColors.githubColor, () {
         openUrl(model.githubUrl);
@@ -169,26 +173,29 @@ class _AboutPageState extends State<AboutPage> {
         color: AppColors.transparent,
         hoverColor: AppColors.white,
         iconColor: AppColors.white,
-        iconHoverColor: AppColors.primaryLight,
+        iconHoverColor: AppColors.primary,
       ),
     );
   }
 
-  Widget _avatarWidget(String imageUrl) {
-    return Container(
-      width: AppDimens.avatarSize,
-      height: AppDimens.avatarSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: AppColors.primary,
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(AppDimens.avatarBorderStrokeWidth),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(AppDimens.avatarBorderRadius),
-          child: FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image: imageUrl,
+  Widget _avatarWidget(String imageUrl, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: AppDimens.avatarSize,
+        height: AppDimens.avatarSize,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.primary,
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(AppDimens.avatarBorderStrokeWidth),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppDimens.avatarBorderRadius),
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: imageUrl,
+            ),
           ),
         ),
       ),
