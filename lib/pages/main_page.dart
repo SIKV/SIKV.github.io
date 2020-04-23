@@ -1,8 +1,9 @@
-import 'package:cv/colors.dart';
 import 'package:cv/pages/about_page.dart';
 import 'package:cv/pages/experience_page.dart';
 import 'package:cv/strings.dart';
+import 'package:cv/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+
+  ThemeManager _themeManager;
 
   List<Widget> _widgetOptions = <Widget>[
     AboutPage(),
@@ -25,6 +28,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    _themeManager = Provider.of<ThemeManager>(context);
+
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -40,11 +45,12 @@ class _MainPageState extends State<MainPage> {
             title: Text(AppStrings.experience),
           ),
         ],
+        elevation: 0,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        selectedItemColor: AppColors.white,
-        unselectedItemColor: AppColors.unselectedItemColor,
-        backgroundColor: AppColors.primary,
+        selectedItemColor: _themeManager.appColors.selectedItemColor,
+        unselectedItemColor: _themeManager.appColors.unselectedItemColor,
+        backgroundColor: Theme.of(context).primaryColor,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),

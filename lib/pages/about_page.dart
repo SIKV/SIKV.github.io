@@ -1,13 +1,14 @@
 import 'package:cv/blocs/data_bloc.dart';
-import 'package:cv/colors.dart';
 import 'package:cv/dimens.dart';
 import 'package:cv/models/user_model.dart';
 import 'package:cv/strings.dart';
+import 'package:cv/theme.dart';
 import 'package:cv/utils/utils.dart';
-import 'package:cv/widgets/hover_icon_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class AboutPage extends StatefulWidget {
@@ -18,6 +19,8 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage> {
   DataBloc _dataBloc;
 
+  ThemeManager _themeManager;
+
   @override
   void initState() {
     super.initState();
@@ -25,8 +28,14 @@ class _AboutPageState extends State<AboutPage> {
     _dataBloc = DataBloc();
   }
 
+  void _invertTheme() {
+    _themeManager.invertTheme();
+  }
+
   @override
   Widget build(BuildContext context) {
+    _themeManager = Provider.of<ThemeManager>(context);
+
     return StreamBuilder<UserModel>(
       stream: _dataBloc.fetchUser(),
       builder: (context, snapshot) {
@@ -50,28 +59,31 @@ class _AboutPageState extends State<AboutPage> {
           children: <Widget>[
             _helloBubble(model.helloText),
 
-            SizedBox(height: 24),
-
-            Text(model.headline,
-              style: Theme.of(context).textTheme.headline1,
+            Padding(
+              padding: const EdgeInsets.only(top: 24),
+              child: Text(model.headline,
+                style: Theme.of(context).textTheme.headline1,
+              ),
             ),
 
-            SizedBox(height: 8),
-
-            Text(model.subhead,
-              style: Theme.of(context).textTheme.subtitle1,
+            Padding(
+              padding: const EdgeInsets.only(left: 4, top: 4),
+              child: Text(model.subhead,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
             ),
 
-            SizedBox(height: 36),
-
-            _buttonsRow(model),
+            Padding(
+              padding: const EdgeInsets.only(top: 36),
+              child: _buttonsRow(model),
+            ),
           ],
         ),
 
         SizedBox(width: AppDimens.sectionSpacing, height: AppDimens.sectionSpacing),
 
         _avatarWidget(model.avatarUrl, () {
-          // TODO Implement
+          _invertTheme();
         }),
       ]),
     );
@@ -105,7 +117,7 @@ class _AboutPageState extends State<AboutPage> {
   Widget _helloBubble(String helloText) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
@@ -122,7 +134,7 @@ class _AboutPageState extends State<AboutPage> {
   }
 
   Widget _buttonsRow(UserModel model) {
-    final double spacing = 24;
+    final double spacing = 20;
 
     List<Widget> widgets = [];
 
@@ -137,13 +149,13 @@ class _AboutPageState extends State<AboutPage> {
     }
 
     widgets.addAll([
-      _socialButton(FontAwesomeIcons.linkedin, AppColors.linkedInColor, () {
+      _socialButton(FontAwesomeIcons.linkedinIn, _themeManager.appColors.linkedInIconColor, () {
         openUrl(model.linkedInUrl);
       }),
 
       SizedBox(width: spacing),
 
-      _socialButton(FontAwesomeIcons.github, AppColors.githubColor, () {
+      _socialButton(FontAwesomeIcons.githubAlt, _themeManager.appColors.githubIconColor, () {
         openUrl(model.githubUrl);
       })
     ]);
@@ -153,28 +165,19 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 
-  Widget _socialButton(IconData icon, Color iconHoverColor, VoidCallback onPressed) {
-    return HoverIconButton(
+  Widget _socialButton(IconData icon, Color iconColor, VoidCallback onPressed) {
+    return IconButton(
       onPressed: onPressed,
-      icon: icon,
-      color: AppColors.transparent,
-      hoverColor: AppColors.white,
-      iconColor: AppColors.white,
-      iconHoverColor: iconHoverColor,
+      iconSize: 19,
+      icon: Icon(icon, color: iconColor),
+      color: _themeManager.appColors.transparent,
     );
   }
 
   Widget _cvButton(VoidCallback onPressed) {
     return Tooltip(
       message: AppStrings.downloadCV,
-      child: HoverIconButton(
-        onPressed: onPressed,
-        icon: FontAwesomeIcons.fileDownload,
-        color: AppColors.transparent,
-        hoverColor: AppColors.white,
-        iconColor: AppColors.white,
-        iconHoverColor: AppColors.primary,
-      ),
+      child: _socialButton(FontAwesomeIcons.fileDownload, _themeManager.appColors.icon, onPressed)
     );
   }
 
@@ -186,7 +189,7 @@ class _AboutPageState extends State<AboutPage> {
         height: AppDimens.avatarSize,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppColors.primary,
+          color: Theme.of(context).primaryColor,
         ),
         child: Padding(
           padding: EdgeInsets.all(AppDimens.avatarBorderStrokeWidth),

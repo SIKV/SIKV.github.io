@@ -1,20 +1,73 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
-  static var primary = Color(0xFF202020);
-  static var accent = Color(0xFF10C260);
-  static var background = Color(0xFF101010);
+abstract class AppColors {
+  Color get primary;
+  Color get accent => Color(0xFF10C260);
 
-  static var text = Colors.white;
-  static var icon = Colors.white;
+  Color get background;
 
-  static var subtitle1 = Color(0xFF656565);
+  Color get text;
+  Color get icon;
 
-  static var unselectedItemColor = Colors.white.withAlpha(90);
+  Color get subtitle1;
 
-  static var linkedInColor = Color(0xFF0e76a8);
-  static var githubColor = Color(0xFF171515);
+  Color get selectedItemColor;
+  Color get unselectedItemColor => selectedItemColor.withAlpha(100);
 
-  static var transparent = Colors.transparent;
-  static var white = Colors.white;
+  Color get linkedInIconColor;
+  Color get githubIconColor;
+
+  Color get transparent => Colors.transparent;
+}
+
+class AppColorsLight extends AppColors {
+  @override
+  Color get primary => Color(0xFFF6F6F6);
+
+  @override
+  Color get background => Color(0xFFFDFDFD);
+
+  @override
+  Color get text => Color(0xFF404040);
+
+  @override
+  Color get icon => Color(0xFF404040);
+
+  @override
+  Color get subtitle1 => Color(0xFFCCCCCC);
+
+  @override
+  Color get selectedItemColor => Color(0xFF404040);
+
+  @override
+  Color get linkedInIconColor => Color(0xFF0E76A8);
+
+  @override
+  Color get githubIconColor => Color(0xFF171515);
+}
+
+class AppColorsDark extends AppColors {
+  @override
+  Color get primary => Color(0xFF202020);
+
+  @override
+  Color get background => Color(0xFF101010);
+
+  @override
+  Color get text => Colors.white;
+
+  @override
+  Color get icon => Colors.white;
+
+  @override
+  Color get subtitle1 => Color(0xFF656565);
+
+  @override
+  Color get selectedItemColor => Colors.white;
+
+  @override
+  Color get linkedInIconColor => Colors.white;
+
+  @override
+  Color get githubIconColor => Colors.white;
 }
