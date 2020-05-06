@@ -1,6 +1,6 @@
 class AppStrings {
   static const title = 'Serhii K.';
   static const about = 'About';
-  static const experience = 'Experience';
+  static const projects = 'Projects';
   static const downloadCV = 'Download CV';
 }

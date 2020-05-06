@@ -5,4 +5,12 @@ class AppDimens {
 
   static const double sectionSpacing = 96;
   static const double contentPadding = 24;
+
+  static const int minProjectItemSize = 250;
+  static const double projectsGridSpacing = 24;
+
+  static const double projectDetailsWidth = 500;
+  static const double projectDetailsHeight = 600;
+  static const double projectDetailsBorderRadius = 8;
+  static const double projectDetailsBackgroundOpacity = 0.7;
 }

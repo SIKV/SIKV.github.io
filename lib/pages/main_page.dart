@@ -1,5 +1,5 @@
 import 'package:cv/pages/about_page.dart';
-import 'package:cv/pages/experience_page.dart';
+import 'package:cv/pages/projects_page.dart';
 import 'package:cv/strings.dart';
 import 'package:cv/theme.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class _MainPageState extends State<MainPage> {
 
   List<Widget> _widgetOptions = <Widget>[
     AboutPage(),
-    ExperiencePage(),
+    ProjectsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -42,7 +42,7 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.work),
-            title: Text(AppStrings.experience),
+            title: Text(AppStrings.projects),
           ),
         ],
         elevation: 0,

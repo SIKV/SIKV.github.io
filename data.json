@@ -5,5 +5,13 @@
   "avatar_url": "https://drive.google.com/uc?id=17CfbVOPxLT57GvUuFn7Vfq4u1Yaa2mE8",
   "cv_url": "",
   "linked_in_url": "https://www.linkedin.com/in/serhiikiiakh",
-  "github_url": "https://github.com/SIKV"
+  "github_url": "https://github.com/SIKV",
+
+  "projects": [
+    {
+      "name": "Project 1",
+      "short_description": "Description",
+      "platform": "android"
+    }
+  ]
 }

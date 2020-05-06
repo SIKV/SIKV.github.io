@@ -58,6 +58,14 @@ class ThemeManager with ChangeNotifier {
       scaffoldBackgroundColor: colors.background,
       canvasColor: colors.background,
 
+      appBarTheme: AppBarTheme(
+        elevation: 1,
+      ),
+
+      cardTheme: CardTheme(
+        elevation: 1,
+      ),
+
       textTheme: TextTheme(
         headline1: TextStyle(
           color: colors.text,
