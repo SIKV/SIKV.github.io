@@ -1,4 +1,5 @@
 import 'package:cv/blocs/data_bloc.dart';
+import 'package:cv/colors.dart';
 import 'package:cv/dimens.dart';
 import 'package:cv/models/user_model.dart';
 import 'package:cv/strings.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class AboutPage extends StatefulWidget {
@@ -18,33 +18,35 @@ class AboutPage extends StatefulWidget {
 
 class _AboutPageState extends State<AboutPage> {
   DataBloc _dataBloc;
-
-  ThemeManager _themeManager;
+  AppColors _appColors;
 
   @override
   void initState() {
-    super.initState();
-
     _dataBloc = DataBloc();
+
+    super.initState();
   }
 
-  void _invertTheme() {
-    _themeManager.invertTheme();
+  @override
+  void didChangeDependencies() {
+    _appColors = ThemeWidget.instanceOf(context).appColors;
+
+    super.didChangeDependencies();
+  }
+
+  void _invertTheme(BuildContext context) {
+    ThemeWidget.instanceOf(context).invertTheme();
   }
 
   @override
   Widget build(BuildContext context) {
-    _themeManager = Provider.of<ThemeManager>(context);
-
     return StreamBuilder<UserModel>(
       stream: _dataBloc.fetchUser(),
       builder: (context, snapshot) {
-        return Scaffold(
-          body: SafeArea(
-            child: snapshot.hasData
-                ? _contentWidget(snapshot.data)
-                : Container(),
-          ),
+        return Center(
+          child: snapshot.hasData
+              ? _contentWidget(snapshot.data)
+              : Container(),
         );
       },
     );
@@ -83,7 +85,7 @@ class _AboutPageState extends State<AboutPage> {
         SizedBox(width: AppDimens.sectionSpacing, height: AppDimens.sectionSpacing),
 
         _avatarWidget(model.avatarUrl, () {
-          _invertTheme();
+          _invertTheme(context);
         }),
       ]),
     );
@@ -149,13 +151,13 @@ class _AboutPageState extends State<AboutPage> {
     }
 
     widgets.addAll([
-      _socialButton(FontAwesomeIcons.linkedinIn, _themeManager.appColors.linkedInIconColor, () {
+      _socialButton(FontAwesomeIcons.linkedinIn, _appColors.linkedInIconColor, () {
         openUrl(model.linkedInUrl);
       }),
 
       SizedBox(width: spacing),
 
-      _socialButton(FontAwesomeIcons.githubAlt, _themeManager.appColors.githubIconColor, () {
+      _socialButton(FontAwesomeIcons.githubAlt, _appColors.githubIconColor, () {
         openUrl(model.githubUrl);
       })
     ]);
@@ -170,14 +172,14 @@ class _AboutPageState extends State<AboutPage> {
       onPressed: onPressed,
       iconSize: 19,
       icon: Icon(icon, color: iconColor),
-      color: _themeManager.appColors.transparent,
+      color: _appColors.transparent,
     );
   }
 
   Widget _cvButton(VoidCallback onPressed) {
     return Tooltip(
       message: AppStrings.downloadCV,
-      child: _socialButton(FontAwesomeIcons.fileDownload, _themeManager.appColors.icon, onPressed)
+      child: _socialButton(FontAwesomeIcons.fileDownload, _appColors.icon, onPressed)
     );
   }
 

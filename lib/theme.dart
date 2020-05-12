@@ -5,95 +5,141 @@ enum AppTheme {
   light, dark
 }
 
-class ThemeManager with ChangeNotifier {
-  AppTheme _appTheme = AppTheme.dark;
-
-  AppColors get appColors {
-    switch (_appTheme) {
-      case AppTheme.light:
-        return AppColorsLight();
-      case AppTheme.dark:
-        return AppColorsDark();
-      default:
-        return null;
-    }
-  }
-
+extension CreateMethods on AppTheme {
   ThemeData createTheme() {
     Brightness brightness;
 
-    switch (_appTheme) {
-      case AppTheme.light:
-        brightness = Brightness.light;
-        break;
-      case AppTheme.dark:
-        brightness = Brightness.dark;
-        break;
-    }
-
-    return _createTheme(brightness, appColors);
-  }
-
-  void setTheme(AppTheme theme) async {
-    _appTheme = theme;
-
-    notifyListeners();
-  }
-
-  void invertTheme() async {
-    if (_appTheme == AppTheme.light) {
-      _appTheme = AppTheme.dark;
+    if (this == AppTheme.light) {
+      brightness = Brightness.light;
     } else {
-      _appTheme = AppTheme.light;
+      brightness = Brightness.dark;
     }
 
-    notifyListeners();
+    return _createTheme(brightness, this.createColors());
   }
 
-  ThemeData _createTheme(Brightness brightness, AppColors colors) {
-    return ThemeData(
-      brightness: brightness,
-      primaryColor: colors.primary,
-      accentColor: colors.accent,
-      scaffoldBackgroundColor: colors.background,
-      canvasColor: colors.background,
+  AppColors createColors() {
+    if (this == AppTheme.light) {
+      return AppColorsLight();
+    } else {
+      return AppColorsDark();
+    }
+  }
+}
 
-      appBarTheme: AppBarTheme(
-        elevation: 1,
-      ),
+class ThemeWidget extends StatefulWidget {
+  final AppTheme appTheme;
+  final Widget child;
 
-      cardTheme: CardTheme(
-        elevation: 1,
-      ),
+  const ThemeWidget({
+    Key key,
+    this.appTheme,
+    @required this.child
+  }) : super(key: key);
 
-      textTheme: TextTheme(
-        headline1: TextStyle(
-          color: colors.text,
-          fontWeight: FontWeight.w900,
-          fontSize: 48,
-        ),
-        headline2: TextStyle(
-          color: colors.text,
-          fontWeight: FontWeight.w600,
-          fontSize: 18,
-        ),
-        subtitle1: TextStyle(
-          color: colors.subtitle1,
-          letterSpacing: 2,
-          fontSize: 13,
-        ),
-      ),
+  @override
+  ThemeWidgetState createState() => ThemeWidgetState();
 
-      tooltipTheme: TooltipThemeData(
-        verticalOffset: 48,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: colors.primary,
-        ),
-        textStyle: TextStyle(
-          fontWeight: FontWeight.w600,
-        ),
-      ),
+  static ThemeWidgetState instanceOf(BuildContext context) {
+    InheritedThemeWidget inherited = (context.dependOnInheritedWidgetOfExactType<InheritedThemeWidget>());
+    return inherited.data;
+  }
+}
+
+class ThemeWidgetState extends State<ThemeWidget> {
+  AppTheme _appTheme;
+  AppColors _appColors;
+
+  AppTheme get appTheme => _appTheme;
+  AppColors get appColors => _appColors;
+
+  void invertTheme() {
+    setState(() {
+      if (_appTheme == AppTheme.light) {
+        _appTheme = AppTheme.dark;
+      } else {
+        _appTheme = AppTheme.light;
+      }
+
+      _appColors = _appTheme.createColors();
+    });
+  }
+
+  @override
+  void initState() {
+    _appTheme = widget.appTheme;
+    _appColors = _appTheme.createColors();
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InheritedThemeWidget(
+      data: this,
+      child: widget.child,
     );
   }
+}
+
+class InheritedThemeWidget extends InheritedWidget {
+  final ThemeWidgetState data;
+
+  InheritedThemeWidget({
+    this.data,
+    Key key,
+    @required Widget child
+  }) : super(key: key, child: child);
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) {
+    return true;
+  }
+}
+
+ThemeData _createTheme(Brightness brightness, AppColors colors) {
+  return ThemeData(
+    brightness: brightness,
+    primaryColor: colors.primary,
+    accentColor: colors.accent,
+    scaffoldBackgroundColor: colors.background,
+    canvasColor: colors.background,
+
+    appBarTheme: AppBarTheme(
+      elevation: 1,
+    ),
+
+    cardTheme: CardTheme(
+      elevation: 1,
+    ),
+
+    textTheme: TextTheme(
+      headline1: TextStyle(
+        color: colors.text,
+        fontWeight: FontWeight.w900,
+        fontSize: 48,
+      ),
+      headline2: TextStyle(
+        color: colors.text,
+        fontWeight: FontWeight.w600,
+        fontSize: 18,
+      ),
+      subtitle1: TextStyle(
+        color: colors.subtitle1,
+        letterSpacing: 2,
+        fontSize: 13,
+      ),
+    ),
+
+    tooltipTheme: TooltipThemeData(
+      verticalOffset: 48,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: colors.primary,
+      ),
+      textStyle: TextStyle(
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  );
 }

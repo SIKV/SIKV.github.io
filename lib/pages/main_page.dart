@@ -1,9 +1,9 @@
+import 'package:cv/colors.dart';
 import 'package:cv/pages/about_page.dart';
 import 'package:cv/pages/projects_page.dart';
 import 'package:cv/strings.dart';
 import 'package:cv/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -11,14 +11,21 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
+  AppColors _appColors;
 
-  ThemeManager _themeManager;
+  int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
     AboutPage(),
     ProjectsPage(),
   ];
+
+  @override
+  void didChangeDependencies() {
+    _appColors = ThemeWidget.instanceOf(context).appColors;
+
+    super.didChangeDependencies();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -28,8 +35,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    _themeManager = Provider.of<ThemeManager>(context);
-
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -48,8 +53,8 @@ class _MainPageState extends State<MainPage> {
         elevation: 0,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        selectedItemColor: _themeManager.appColors.selectedItemColor,
-        unselectedItemColor: _themeManager.appColors.unselectedItemColor,
+        selectedItemColor: _appColors.selectedItemColor,
+        unselectedItemColor: _appColors.unselectedItemColor,
         backgroundColor: Theme.of(context).primaryColor,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
