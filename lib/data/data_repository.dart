@@ -30,13 +30,7 @@ class DataRepository {
     List projects = List<ProjectModel>();
 
     jsonDecoded['projects'].forEach((projectJson) {
-      projects.add(
-        ProjectModel(
-          name: projectJson['name'],
-          shortDescription: projectJson['short_description'],
-          platform: projectJson['platform'],
-        )
-      );
+      projects.add(ProjectModel.fromJson(projectJson));
     });
 
     return projects;

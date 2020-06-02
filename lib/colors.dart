@@ -5,7 +5,6 @@ abstract class AppColors {
   Color get accent => Color(0xFF10C260);
 
   Color get background;
-  Color get backgroundLight => primary;
 
   Color get text;
   Color get icon;

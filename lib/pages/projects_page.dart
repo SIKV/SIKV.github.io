@@ -1,14 +1,11 @@
 import 'package:cv/blocs/data_bloc.dart';
-import 'package:cv/colors.dart';
 import 'package:cv/dimens.dart';
 import 'package:cv/models/project_model.dart';
-import 'package:cv/pages/project_details_screen.dart';
 import 'package:cv/routes/slide_top_route.dart';
+import 'package:cv/screens/project_details_screen.dart';
 import 'package:cv/widgets/project_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-import '../theme.dart';
 
 class ProjectsPage extends StatefulWidget {
   @override
@@ -17,7 +14,6 @@ class ProjectsPage extends StatefulWidget {
 
 class _ProjectsPageState extends State<ProjectsPage> {
   DataBloc _dataBloc;
-  AppColors _appColors;
 
   @override
   void initState() {
@@ -26,18 +22,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
     super.initState();
   }
 
-  @override
-  void didChangeDependencies() {
-    _appColors = ThemeWidget.instanceOf(context).appColors;
-
-    super.didChangeDependencies();
-  }
-
   void _onProjectItemPressed(ProjectModel project) {
     Navigator.push(context, SlideTopRoute(
       opaque: false,
       page: ProjectDetailsScreen(
-        backgroundColor: _appColors.backgroundLight,
         project: project,
       ),
     ));

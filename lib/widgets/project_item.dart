@@ -45,7 +45,7 @@ class ProjectItem extends StatelessWidget {
           const SizedBox(height: 8),
 
           Flexible(
-            child: Text(projectModel.shortDescription,
+            child: Text(projectModel.appShortDescription,
               textAlign: TextAlign.center,
               maxLines: 3,
               style: Theme.of(context).textTheme.subtitle1,
