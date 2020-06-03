@@ -1,4 +1,5 @@
 import 'package:cv/colors.dart';
+import 'package:cv/constants.dart';
 import 'package:cv/pages/about_page.dart';
 import 'package:cv/pages/projects_page.dart';
 import 'package:cv/strings.dart';
@@ -10,8 +11,11 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  AppColors _appColors;
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
+  final _animationFrom = 0.5;
+
+  AnimationController _animationController;
+  Animation<double> _scaleAnimation;
 
   int _selectedIndex = 0;
 
@@ -19,6 +23,33 @@ class _MainPageState extends State<MainPage> {
     AboutPage(),
     ProjectsPage(),
   ];
+
+  AppColors _appColors;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: AppConstants.mainPageTransitionAnimationDuration),
+      vsync: this,
+    );
+
+    _scaleAnimation = CurvedAnimation(parent: _animationController,
+      curve: Curves.elasticInOut,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _animationController.forward(from: _animationFrom);
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+
+    super.dispose();
+  }
 
   @override
   void didChangeDependencies() {
@@ -30,6 +61,9 @@ class _MainPageState extends State<MainPage> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+
+      _animationController.reset();
+      _animationController.forward(from: _animationFrom);
     });
   }
 
@@ -37,7 +71,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: ScaleTransition(
+          scale: _scaleAnimation,
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

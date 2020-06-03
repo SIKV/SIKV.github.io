@@ -1,3 +1,4 @@
+import 'package:cv/constants.dart';
 import 'package:cv/dimens.dart';
 import 'package:cv/models/project_model.dart';
 import 'package:cv/utils/utils.dart';
@@ -28,7 +29,7 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
     _scrollController.addListener(() => setState(() { }));
 
     _fabAnimationController = AnimationController(
-      duration: const Duration(milliseconds: AppDimens.projectDetailsFabAnimationDuration),
+      duration: const Duration(milliseconds: AppConstants.projectDetailsFabAnimationDuration),
       vsync: this,
       value: 0,
     );
@@ -38,7 +39,7 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
     );
 
     // Initial fab animation with some delay.
-    Future.delayed(const Duration(milliseconds: AppDimens.projectDetailsFabAnimationDuration * 2), () {
+    Future.delayed(const Duration(milliseconds: AppConstants.projectDetailsFabAnimationDuration * 2), () {
       _fabAnimationController.forward();
     });
   }
@@ -78,7 +79,7 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
 
   Widget _rootLayout(BuildContext context) {
     return Container(
-      color: Theme.of(context).primaryColor.withOpacity(AppDimens.projectDetailsBackgroundOpacity),
+      color: Theme.of(context).primaryColor.withOpacity(AppConstants.projectDetailsBackgroundOpacity),
       child: Center(
         child: SizedBox(
           width: AppDimens.projectDetailsWidth,

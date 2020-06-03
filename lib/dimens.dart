@@ -12,7 +12,5 @@ class AppDimens {
   static const double projectDetailsWidth = 500;
   static const double projectDetailsHeight = 600;
   static const double projectDetailsBorderRadius = 8;
-  static const double projectDetailsBackgroundOpacity = 0.2;
   static const double projectDetailsAppBarExpandedHeight = 125;
-  static const int projectDetailsFabAnimationDuration = 150;
 }
