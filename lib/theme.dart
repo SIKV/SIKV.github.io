@@ -113,6 +113,10 @@ ThemeData _createTheme(Brightness brightness, AppColors colors) {
       elevation: 1,
     ),
 
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      elevation: 2,
+    ),
+
     textTheme: TextTheme(
       headline1: TextStyle(
         color: colors.text,
@@ -126,8 +130,12 @@ ThemeData _createTheme(Brightness brightness, AppColors colors) {
       ),
       subtitle1: TextStyle(
         color: colors.subtitle1,
-        letterSpacing: 2,
-        fontSize: 13,
+        letterSpacing: 1.5,
+        fontSize: 14,
+      ),
+      bodyText1: TextStyle(
+        color: colors.bodyText1,
+        fontSize: 16,
       ),
     ),
 

@@ -71,7 +71,9 @@ class _AboutPageState extends State<AboutPage> {
             Padding(
               padding: const EdgeInsets.only(left: 4, top: 4),
               child: Text(model.subhead,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                  fontSize: 16,
+                ),
               ),
             ),
 

@@ -8,20 +8,26 @@ class ProjectModel {
   final String name;
   final String platform;
   final String appShortDescription;
+  final String description;
   final String url;
+  final List<String> screenshots;
 
   ProjectModel({
     this.name,
     this.platform,
     this.appShortDescription,
-    this.url
+    this.description,
+    this.url,
+    this.screenshots
   });
 
   ProjectModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         platform = json['platform'],
         appShortDescription = json['app_short_description'],
-        url = json['url'];
+        description = json['description'],
+        url = json['url'],
+        screenshots = json['screenshots']?.cast<String>();
 
   Color resolveColor() {
     Color color;

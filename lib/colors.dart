@@ -10,6 +10,7 @@ abstract class AppColors {
   Color get icon;
 
   Color get subtitle1;
+  Color get bodyText1;
 
   Color get selectedItemColor;
   Color get unselectedItemColor => selectedItemColor.withAlpha(100);
@@ -34,7 +35,10 @@ class AppColorsLight extends AppColors {
   Color get icon => Color(0xFF404040);
 
   @override
-  Color get subtitle1 => Color(0xFFCCCCCC);
+  Color get subtitle1 => Color(0xFFAAAAAA);
+
+  @override
+  Color get bodyText1 => Color(0xFF757575);
 
   @override
   Color get selectedItemColor => Color(0xFF404040);
@@ -61,6 +65,9 @@ class AppColorsDark extends AppColors {
 
   @override
   Color get subtitle1 => Color(0xFF656565);
+
+  @override
+  Color get bodyText1 => Color(0xFFBBBBBB);
 
   @override
   Color get selectedItemColor => Colors.white;

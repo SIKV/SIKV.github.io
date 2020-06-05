@@ -1,8 +1,10 @@
 import 'package:cv/constants.dart';
 import 'package:cv/dimens.dart';
 import 'package:cv/models/project_model.dart';
+import 'package:cv/strings.dart';
 import 'package:cv/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ProjectDetailsScreen extends StatefulWidget {
   final ProjectModel project;
@@ -16,6 +18,8 @@ class ProjectDetailsScreen extends StatefulWidget {
 }
 
 class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with TickerProviderStateMixin {
+  static const double _horizontalPadding = 24;
+
   ScrollController _scrollController;
 
   AnimationController _fabAnimationController;
@@ -69,7 +73,7 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
     return Theme(
       data: Theme.of(context).copyWith(
         accentColor: widget.project.resolveColor(),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
+        floatingActionButtonTheme: Theme.of(context).floatingActionButtonTheme.copyWith(
           backgroundColor: widget.project.resolveColor(),
         )
       ),
@@ -175,27 +179,88 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
   }
 
   Widget _infoWidget() {
+    List<Widget> children = [];
+
+    /**
+     * Description
+     */
+    String description = widget.project.description ?? "";
+
+    if (description.isNotEmpty) {
+      children.add(_sectionTitle(AppStrings.aboutThisApp));
+
+      children.add(
+        Padding(
+          padding: const EdgeInsets.only(left: _horizontalPadding, right: _horizontalPadding),
+          child: Text(description,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        )
+      );
+
+      children.add(_sectionSpacing());
+    }
+
+    /**
+     * Screenshots
+     */
+    List<String> screenshots = widget.project.screenshots ?? [];
+
+    if (screenshots.isNotEmpty) {
+      children.add(_sectionTitle(AppStrings.screenshots));
+      children.add(_screenshotsSection(screenshots));
+    }
+
     return Container(
-      padding: const EdgeInsets.only(left: 24, right: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: children,
+      ),
+    );
+  }
 
-          _sectionTitle('Section 1'),
-
-        ],
+  Widget _screenshotsSection(List<String> screenshots) {
+    return Container(
+      height: AppDimens.projectDetailsScreenshotHeight,
+      child: ListView.separated(
+        padding: const EdgeInsets.only(left: _horizontalPadding, right: _horizontalPadding),
+        scrollDirection: Axis.horizontal,
+        itemCount: screenshots.length,
+        itemBuilder: (context, index) {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Container(
+              width: AppDimens.projectDetailsScreenshotWidth,
+              color: Theme
+                  .of(context)
+                  .primaryColor,
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: screenshots[index],
+                fit: BoxFit.cover,
+              ),
+            ),
+          );
+        },
+        separatorBuilder: (context, index) => SizedBox(width: 16),
       ),
     );
   }
 
   Widget _sectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.only(top: 24, bottom: 24),
+      padding: const EdgeInsets.only(top: 24, left: _horizontalPadding, right: _horizontalPadding, bottom: 22),
       child: Text(title.toUpperCase(),
         style: Theme.of(context).textTheme.subtitle1.copyWith(
-          fontSize: 12,
+          fontSize: 11,
         ),
       ),
+    );
+  }
+
+  Widget _sectionSpacing() {
+    return SizedBox(
+      height: 14,
     );
   }
 }

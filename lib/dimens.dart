@@ -13,4 +13,6 @@ class AppDimens {
   static const double projectDetailsHeight = 600;
   static const double projectDetailsBorderRadius = 8;
   static const double projectDetailsAppBarExpandedHeight = 125;
+  static const double projectDetailsScreenshotWidth = 146;
+  static const double projectDetailsScreenshotHeight = 256;
 }
