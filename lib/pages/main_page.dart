@@ -4,6 +4,7 @@ import 'package:cv/pages/about_page.dart';
 import 'package:cv/pages/projects_page.dart';
 import 'package:cv/strings.dart';
 import 'package:cv/theme.dart';
+import 'package:cv/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -76,7 +77,9 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CustomBottomNavigationBar(
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -87,14 +90,9 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             title: Text(AppStrings.projects),
           ),
         ],
-        elevation: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
         selectedItemColor: _appColors.selectedItemColor,
         unselectedItemColor: _appColors.unselectedItemColor,
         backgroundColor: Theme.of(context).primaryColor,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
       ),
     );
   }
