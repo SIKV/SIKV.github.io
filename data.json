@@ -1,5 +1,5 @@
 {
-  "hello_text": "Hello ✋ I am",
+  "hello_text": "Hi ✋ I am",
   "headline": "Serhii Kiiakh",
   "subhead": "Mobile developer",
   "avatar_url": "https://drive.google.com/uc?id=1zXP_snYCN757DQ6zgo-qNG_wXjmR8QtR",
@@ -40,10 +40,32 @@
       "url": "https://quest.gl"
     },
     {
+      "name": "News",
+      "platform": "mobile",
+      "app_short_description": "The News app brings you news",
+      "url": "https://github.com/SIKV/News",
+      "screenshots": [
+        "https://github.com/SIKV/News/raw/assets/screenshot1.png?raw=true",
+        "https://github.com/SIKV/News/blob/assets/screenshot2.png?raw=true",
+        "https://github.com/SIKV/News/raw/assets/screenshot3.png?raw=true"
+      ]
+    },
+    {
       "name": "VincitEAM",
       "platform": "android",
       "app_short_description": "Enterprise Asset Management",
       "url": "https://www.vincit.fi/en/what-we-do/vincit-eam"
+    },
+    {
+      "name": "Photos",
+      "platform": "android",
+      "app_short_description": "Browse, search, download, and share amazing free photos",
+      "url": "https://github.com/SIKV/Photos",
+      "screenshots": [
+        "https://github.com/SIKV/Photos/raw/assets/img1.png?raw=true",
+        "https://github.com/SIKV/Photos/raw/assets/img2.png?raw=true",
+        "https://github.com/SIKV/Photos/raw/assets/img4.png?raw=true"
+      ]
     }
   ]
 }

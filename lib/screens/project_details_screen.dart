@@ -231,12 +231,11 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
             borderRadius: BorderRadius.circular(8),
             child: Container(
               width: AppDimens.projectDetailsScreenshotWidth,
-              color: Theme
-                  .of(context)
-                  .primaryColor,
+              color: Theme.of(context).primaryColor,
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
                 image: screenshots[index],
+                alignment: Alignment.topCenter,
                 fit: BoxFit.cover,
               ),
             ),
