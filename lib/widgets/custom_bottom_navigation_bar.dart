@@ -117,7 +117,7 @@ class _Tile extends StatelessWidget {
                   fontSize: 9,
                   letterSpacing: 1,
                 ),
-                child: item.title,
+                child: Text(item.label.toUpperCase()),
               ),
             ],
           ),

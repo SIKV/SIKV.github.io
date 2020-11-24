@@ -131,7 +131,7 @@ ThemeData _createTheme(Brightness brightness, AppColors colors) {
       subtitle1: TextStyle(
         color: colors.subtitle1,
         letterSpacing: 1.5,
-        fontSize: 14,
+        fontSize: 16,
       ),
       bodyText1: TextStyle(
         color: colors.bodyText1,

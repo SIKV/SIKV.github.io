@@ -54,7 +54,7 @@ class _AboutPageState extends State<AboutPage> {
 
   Widget _contentWidget(UserModel model) {
     return Center(
-      child: _rootLayout(<Widget>[
+      child: rootLayout(context, <Widget>[
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,9 +71,7 @@ class _AboutPageState extends State<AboutPage> {
             Padding(
               padding: const EdgeInsets.only(left: 4, top: 4),
               child: Text(model.subhead,
-                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                  fontSize: 16,
-                ),
+                style: Theme.of(context).textTheme.subtitle1,
               ),
             ),
 
@@ -91,31 +89,6 @@ class _AboutPageState extends State<AboutPage> {
         }),
       ]),
     );
-  }
-
-  Widget _rootLayout(List<Widget> children) {
-    if (isPortraitOrientation(context)) {
-      return SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimens.contentPadding),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: children.reversed.toList(),
-          ),
-        ),
-      );
-    } else {
-      return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimens.contentPadding),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: children,
-          ),
-        ),
-      );
-    }
   }
 
   Widget _helloBubble(String helloText) {

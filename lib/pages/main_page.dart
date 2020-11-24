@@ -1,6 +1,7 @@
 import 'package:cv/colors.dart';
 import 'package:cv/constants.dart';
 import 'package:cv/pages/about_page.dart';
+import 'package:cv/pages/education_page.dart';
 import 'package:cv/pages/projects_page.dart';
 import 'package:cv/strings.dart';
 import 'package:cv/theme.dart';
@@ -23,6 +24,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   List<Widget> _widgetOptions = <Widget>[
     AboutPage(),
     ProjectsPage(),
+    EducationPage(),
   ];
 
   AppColors _appColors;
@@ -82,12 +84,16 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text(AppStrings.about),
+            icon: Icon(Icons.person_rounded),
+            label: AppStrings.about,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.work),
-            title: Text(AppStrings.projects),
+            icon: Icon(Icons.work_rounded),
+            label: AppStrings.projects,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school_rounded),
+            label: AppStrings.education,
           ),
         ],
         selectedItemColor: _appColors.selectedItemColor,

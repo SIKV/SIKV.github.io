@@ -1,11 +1,20 @@
 {
   "hello_text": "Hi ✋ I am",
   "headline": "Serhii Kiiakh",
-  "subhead": "Mobile developer",
-  "avatar_url": "https://drive.google.com/uc?id=1zXP_snYCN757DQ6zgo-qNG_wXjmR8QtR",
+  "subhead": "Android developer",
+  "avatar_url": "",
   "cv_url": "",
-  "linked_in_url": "https://www.linkedin.com/in/serhiikiiakh",
+  "linked_in_url": "https://www.linkedin.com/in/serhii-kiiakh",
   "github_url": "https://github.com/SIKV",
+
+  "education": {
+    "school": "Zaporizhzhia Institute of Economics and Information Technologies",
+    "school_url": "https://en.wikipedia.org/wiki/Zaporizhzhia_Institute_of_Economics_and_Information_Technologies",
+    "degree": "Bachelor of Software Engineering",
+    "degree_short": "B.SE.",
+    "start_year": "2013",
+    "end_year": "2017"
+  },
 
   "projects": [
     {

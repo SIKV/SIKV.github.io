@@ -35,7 +35,7 @@ class AppColorsLight extends AppColors {
   Color get icon => Color(0xFF404040);
 
   @override
-  Color get subtitle1 => Color(0xFFAAAAAA);
+  Color get subtitle1 => Color(0xFF808080);
 
   @override
   Color get bodyText1 => Color(0xFF757575);

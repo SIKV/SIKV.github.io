@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:core';
 
+import 'package:cv/models/education_model.dart';
 import 'package:cv/models/project_model.dart';
 import 'package:cv/models/user_model.dart';
 import 'package:flutter/services.dart';
@@ -34,5 +35,21 @@ class DataRepository {
     });
 
     return projects;
+  }
+
+  Future<EducationModel> fetchEducation() async {
+    final jsonDecoded = await rootBundle.loadString(_path)
+        .then((jsonData) => json.decode(jsonData));
+
+    var educationJson = jsonDecoded['education'];
+
+    return EducationModel(
+      school: educationJson['school'],
+      schoolUrl: educationJson['school_url'],
+      degree: educationJson['degree'],
+      degreeShort: educationJson['degree_short'],
+      startYear: educationJson['start_year'],
+      endYear: educationJson['end_year'],
+    );
   }
 }
