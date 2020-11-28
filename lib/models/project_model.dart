@@ -7,27 +7,33 @@ class ProjectModel {
 
   final String name;
   final String platform;
-  final String appShortDescription;
-  final String description;
+  final String shortDescription;
+  final bool openSource;
   final String url;
+  final List<String> points;
+  final List<String> technologies;
   final List<String> screenshots;
 
   ProjectModel({
     this.name,
     this.platform,
-    this.appShortDescription,
-    this.description,
+    this.shortDescription,
+    this.openSource,
     this.url,
+    this.points,
+    this.technologies,
     this.screenshots
   });
 
   ProjectModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        platform = json['platform'],
-        appShortDescription = json['app_short_description'],
-        description = json['description'],
-        url = json['url'],
-        screenshots = json['screenshots']?.cast<String>();
+        platform = json['platform'] ?? '',
+        shortDescription = json['short_description'] ?? '',
+        openSource = json['is_open_source'] ?? false,
+        url = json['url'] ?? '',
+        points = json['points']?.cast<String>() ?? [],
+        technologies = json['technologies']?.cast<String>() ?? [],
+        screenshots = json['screenshots']?.cast<String>() ?? [];
 
   Color resolveColor() {
     Color color;
@@ -54,7 +60,7 @@ class ProjectModel {
         break;
 
       case 'android':
-        iconData = FontAwesomeIcons.android;
+        iconData = Icons.android;
         break;
     }
 

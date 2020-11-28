@@ -18,45 +18,9 @@ class ProjectDetailsScreen extends StatefulWidget {
 }
 
 class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with TickerProviderStateMixin {
-  static const double _horizontalPadding = 24;
+  static const double horizontalPadding = 24;
 
-  ScrollController _scrollController;
-
-  AnimationController _fabAnimationController;
-  Animation<double> _fabScaleAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _scrollController = ScrollController();
-    _scrollController.addListener(() => setState(() { }));
-
-    _fabAnimationController = AnimationController(
-      duration: const Duration(milliseconds: AppConstants.projectDetailsFabAnimationDuration),
-      vsync: this,
-      value: 0,
-    );
-
-    _fabScaleAnimation = CurvedAnimation(parent: _fabAnimationController,
-        curve: Curves.linear,
-    );
-
-    // Initial fab animation with some delay.
-    Future.delayed(const Duration(milliseconds: AppConstants.projectDetailsFabAnimationDuration * 2), () {
-      _fabAnimationController.forward();
-    });
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    _fabAnimationController.dispose();
-
-    super.dispose();
-  }
-
-  void _openAppUrl() {
+  void openAppUrl() {
     openUrl(widget.project.url);
   }
 
@@ -65,9 +29,9 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
     Widget child;
 
     if (isPortraitOrientation(context) || isMobile()) {
-      child = _mobileRootLayout(context);
+      child = mobileRootLayout(context);
     } else {
-      child = _rootLayout(context);
+      child = rootLayout(context);
     }
 
     return Theme(
@@ -75,141 +39,147 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
         accentColor: widget.project.resolveColor(),
         floatingActionButtonTheme: Theme.of(context).floatingActionButtonTheme.copyWith(
           backgroundColor: widget.project.resolveColor(),
-        )
+        ),
       ),
       child: child,
     );
   }
 
-  Widget _rootLayout(BuildContext context) {
+  Widget rootLayout(BuildContext context) {
     return Container(
       color: Theme.of(context).primaryColor.withOpacity(AppConstants.projectDetailsBackgroundOpacity),
       child: Center(
         child: SizedBox(
           width: AppDimens.projectDetailsWidth,
           height: AppDimens.projectDetailsHeight,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppDimens.projectDetailsBorderRadius),
-            ),
-            child: _contentWidget(context),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppDimens.projectDetailsBorderRadius),
+            child: contentWidget(context),
           ),
         ),
       ),
     );
   }
 
-  Widget _mobileRootLayout(BuildContext context) {
-    return _contentWidget(context);
+  Widget mobileRootLayout(BuildContext context) {
+    return contentWidget(context);
   }
 
-  Widget _contentWidget(BuildContext context) {
-    return  Scaffold(
-      body: Stack(
-        children: <Widget>[
-          CustomScrollView(
-            controller: _scrollController,
-            slivers: <Widget>[
-              _appBar(context),
+  Widget contentWidget(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          appBar(context),
 
-              SliverFillRemaining(
-                child: _infoWidget(),
-              ),
-            ],
+          SliverToBoxAdapter(
+            child: infoWidget(),
           ),
-
-          _fab(context),
         ],
       ),
     );
   }
 
-  Widget _appBar(BuildContext context) {
+  Widget appBar(BuildContext context) {
     return SliverAppBar(
       expandedHeight: AppDimens.projectDetailsAppBarExpandedHeight,
       leading: IconButton(
         onPressed: () => Navigator.of(context).pop(),
-        icon: Icon(Icons.close),
+        icon: Icon(Icons.close_rounded),
       ),
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
+        centerTitle: false,
         title: Text(widget.project.name,
           style: TextStyle(
             fontWeight: FontWeight.w700,
           ),
         ),
       ),
-    );
-  }
-
-  Widget _fab(BuildContext context) {
-    double top = AppDimens.projectDetailsAppBarExpandedHeight;
-
-    final scaleStartOffset = top / 5;
-
-    if (!isMobile()) {
-      top -= 24;
-    }
-
-    if (_scrollController.hasClients) {
-      double offset = _scrollController.offset;
-      top -= offset;
-
-      if (offset > scaleStartOffset) {
-        // Hide fab.
-        _fabAnimationController.reverse();
-      } else {
-        // Show fab.
-        _fabAnimationController.forward();
-      }
-    }
-
-    return Positioned(
-      top: top,
-      right: 16,
-      child: ScaleTransition(
-        scale: _fabScaleAnimation,
-        alignment: Alignment.center,
-        child: FloatingActionButton(
-          onPressed: _openAppUrl,
-          child: Icon(Icons.public),
+      actions: [
+        IconButton(
+          onPressed: openAppUrl,
+          icon: Icon(Icons.public_rounded),
+          tooltip: AppStrings.visitWebsite,
         ),
-      ),
+      ],
     );
   }
 
-  Widget _infoWidget() {
+  Widget infoWidget() {
     List<Widget> children = [];
 
+    children.add(spaceSeparator());
+
     /**
-     * Description
+     * Points.
      */
-    String description = widget.project.description ?? "";
+    List<String> points = widget.project.points;
 
-    if (description.isNotEmpty) {
-      children.add(_sectionTitle(AppStrings.aboutThisApp));
+    Color projectColor = widget.project.resolveColor();
 
-      children.add(
-        Padding(
-          padding: const EdgeInsets.only(left: _horizontalPadding, right: _horizontalPadding),
-          child: Text(description,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-        )
+    if (points.isNotEmpty) {
+      Widget widget = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: points.map((point) {
+          final double topPadding = point != points.first ? 16 : 0;
+
+          return Padding(
+            padding: EdgeInsets.only(top: topPadding),
+            child: RichText(
+              text: TextSpan(
+                text: '${AppStrings.pointSymbol}  ',
+                children: [
+                  TextSpan(text: point, style: Theme.of(context).textTheme.bodyText1),
+                ],
+                style: TextStyle(
+                  color: projectColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          );
+
+        }).toList(),
       );
 
-      children.add(_sectionSpacing());
+      children.add(hPadding(widget));
+      children.add(spaceSeparator());
     }
 
     /**
-     * Screenshots
+     * Technologies.
      */
-    List<String> screenshots = widget.project.screenshots ?? [];
+    List<String> technologies = widget.project.technologies;
+
+    if (technologies.isNotEmpty) {
+      Widget widget = Wrap(
+        spacing: 8,
+        runSpacing: 12,
+        children: technologies.map((t) => Chip(
+          label: Text(t),
+        )).toList(),
+      );
+
+      children.add(sectionTitle(AppStrings.technologies));
+      children.add(spaceSeparator());
+
+      children.add(hPadding(widget));
+      children.add(spaceSeparator());
+    }
+
+    /**
+     * Screenshots.
+     */
+    List<String> screenshots = widget.project.screenshots;
 
     if (screenshots.isNotEmpty) {
-      children.add(_sectionTitle(AppStrings.screenshots));
-      children.add(_screenshotsSection(screenshots));
+      children.add(sectionTitle(AppStrings.screenshots));
+      children.add(spaceSeparator());
+      children.add(screenshotsSection(screenshots));
     }
+
+    children.add(spaceSeparator());
 
     return Container(
       child: Column(
@@ -219,24 +189,23 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
     );
   }
 
-  Widget _screenshotsSection(List<String> screenshots) {
+  Widget screenshotsSection(List<String> screenshots) {
     return Container(
       height: AppDimens.projectDetailsScreenshotHeight,
       child: ListView.separated(
-        padding: const EdgeInsets.only(left: _horizontalPadding, right: _horizontalPadding),
+        padding: const EdgeInsets.only(left: horizontalPadding, right: horizontalPadding),
         scrollDirection: Axis.horizontal,
         itemCount: screenshots.length,
         itemBuilder: (context, index) {
           return ClipRRect(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(4),
             child: Container(
+              padding: const EdgeInsets.all(4),
               width: AppDimens.projectDetailsScreenshotWidth,
               color: Theme.of(context).primaryColor,
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
                 image: screenshots[index],
-                alignment: Alignment.topCenter,
-                fit: BoxFit.cover,
               ),
             ),
           );
@@ -246,20 +215,27 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
     );
   }
 
-  Widget _sectionTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 24, left: _horizontalPadding, right: _horizontalPadding, bottom: 22),
-      child: Text(title.toUpperCase(),
+  Widget sectionTitle(String title) {
+    return hPadding(
+      Text(title.toUpperCase(),
         style: Theme.of(context).textTheme.subtitle1.copyWith(
           fontSize: 11,
         ),
-      ),
+      )
     );
   }
 
-  Widget _sectionSpacing() {
-    return SizedBox(
-      height: 14,
+  Widget spaceSeparator() {
+    return const SizedBox(height: 24);
+  }
+
+  Widget hPadding(Widget widget) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: horizontalPadding,
+        right: horizontalPadding,
+      ),
+      child: widget,
     );
   }
 }

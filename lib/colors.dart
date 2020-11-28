@@ -67,7 +67,7 @@ class AppColorsDark extends AppColors {
   Color get subtitle1 => Color(0xFF656565);
 
   @override
-  Color get bodyText1 => Color(0xFFBBBBBB);
+  Color get bodyText1 => Color(0xFFDDDDDD);
 
   @override
   Color get selectedItemColor => Colors.white;

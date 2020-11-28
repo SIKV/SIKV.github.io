@@ -16,7 +16,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppStrings.title,
-      theme: ThemeWidget.instanceOf(context).appTheme.createTheme(),
+      theme: ThemeWidget.instanceOf(context).appTheme.createTheme(context),
       home: MainPage(),
     );
   }

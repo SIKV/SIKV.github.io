@@ -6,7 +6,7 @@ enum AppTheme {
 }
 
 extension CreateMethods on AppTheme {
-  ThemeData createTheme() {
+  ThemeData createTheme(BuildContext context) {
     Brightness brightness;
 
     if (this == AppTheme.light) {
@@ -15,7 +15,7 @@ extension CreateMethods on AppTheme {
       brightness = Brightness.dark;
     }
 
-    return _createTheme(brightness, this.createColors());
+    return _createTheme(context, brightness, this.createColors());
   }
 
   AppColors createColors() {
@@ -97,7 +97,7 @@ class InheritedThemeWidget extends InheritedWidget {
   }
 }
 
-ThemeData _createTheme(Brightness brightness, AppColors colors) {
+ThemeData _createTheme(BuildContext context, Brightness brightness, AppColors colors) {
   return ThemeData(
     brightness: brightness,
     primaryColor: colors.primary,
@@ -135,6 +135,7 @@ ThemeData _createTheme(Brightness brightness, AppColors colors) {
       ),
       bodyText1: TextStyle(
         color: colors.bodyText1,
+        fontWeight: FontWeight.w300,
         fontSize: 16,
       ),
     ),
@@ -148,6 +149,16 @@ ThemeData _createTheme(Brightness brightness, AppColors colors) {
       textStyle: TextStyle(
         fontWeight: FontWeight.w600,
       ),
+    ),
+
+    chipTheme: Theme.of(context).chipTheme.copyWith(
+      brightness: brightness,
+      labelStyle: TextStyle(
+        color: colors.bodyText1,
+        letterSpacing: 1.5,
+        fontSize: 13,
+      ),
+      backgroundColor: colors.primary,
     ),
   );
 }
