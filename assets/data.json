@@ -1,49 +1,68 @@
 {
-  "hello_text": "Hi ✋ I am",
   "headline": "Serhii Kiiakh",
-  "subhead": "Mobile developer",
-  "avatar_url": "https://drive.google.com/uc?id=1zXP_snYCN757DQ6zgo-qNG_wXjmR8QtR",
-  "cv_url": "",
-  "linked_in_url": "https://www.linkedin.com/in/serhiikiiakh",
+  "subhead": "Android developer",
+  "avatar_url": "https://drive.google.com/uc?id=1_fy0oMQr1-3_3g0tu6sEbupd8K8fRU1i",
   "github_url": "https://github.com/SIKV",
+  "linked_in_url": "https://www.linkedin.com/in/serhii-kiiakh",
+  "medium_url": "https://medium.com/@serhii.k",
+
+  "education": {
+    "school": "Zaporizhzhia Institute of Economics and Information Technologies",
+    "school_url": "https://en.wikipedia.org/wiki/Zaporizhzhia_Institute_of_Economics_and_Information_Technologies",
+    "degree": "Bachelor of Software Engineering",
+    "degree_short": "B.SE.",
+    "start_year": "2013",
+    "end_year": "2017"
+  },
 
   "projects": [
     {
-      "name": "CrowdJoy",
+      "name": "VincitEAM",
       "platform": "android",
-      "app_short_description": "Turn live events into fun, stress-free experiences",
-      "description": "The CrowdJoy App is a mobile application that enables its users to privately share their locations with friends and more.",
-      "url": "https://www.volo.global/solutions/mobile-development/crowdjoy",
+      "short_description": "Uncomplicated Enterprise Asset Management Software",
+      "url": "https://www.vincit.fi/en/what-we-do/vincit-eam",
+      "technologies": [
+        "Android SDK", "Kotlin", "MVP", "Work Manager", "Room", "RxJava",
+        "Retrofit", "App Center Distribution", "Google Maps SDK"
+      ],
       "screenshots": [
-        "https://drive.google.com/uc?id=1DPo_dVXKx-2fM8t4y5_-NeGKAytJBvjS",
-        "https://drive.google.com/uc?id=17bjk7xVafBrZUfBNAFe5-ofGpVvmjQw1",
-        "https://drive.google.com/uc?id=1OWR7s03pWZ2wmnvxg8PRkQYT2i7ia2wL",
-        "https://drive.google.com/uc?id=1reR4Ee9KN9hgGJPzKSp3C5EBBPzMdyub"
+        "https://drive.google.com/uc?id=1GQnrd6Gi5pk_NVCM2xIyLNWHcjWd6aNP",
+        "https://drive.google.com/uc?id=1xomYhjXYiLkL3J57gax7S5CqSR9XttYY"
       ]
     },
     {
-      "name": "Find Words",
+      "name": "Photos",
       "platform": "android",
-      "app_short_description": "Train your brain and vocabulary",
-      "url": "https://quickappninja.com"
-    },
-    {
-      "name": "Q Prayer",
-      "platform": "mobile",
-      "app_short_description": "Connecting people in Prayer",
-      "url": "https://www.qprayer.com"
-    },
-    {
-      "name": "Quest.gl",
-      "platform": "android",
-      "app_short_description": "Build better teams",
-      "url": "https://quest.gl"
+      "short_description": "Amazing free photos",
+      "is_open_source": true,
+      "url": "https://github.com/SIKV/Photos",
+      "points": [
+        "Designed and developed from scratch."
+      ],
+      "technologies": [
+        "Android SDK", "Kotlin", "MVVM", "Material Components", "Android Architecture Components",
+        "Dagger", "Retrofit", "Kotlin Coroutines", "Firebase Authentication", "Cloud Firestore",
+        "Firebase Remote Config", "ML Kit", "Glide", "Chrome Custom Tabs"
+      ],
+      "screenshots": [
+        "https://raw.githubusercontent.com/SIKV/Photos/assets/promo1.jpg",
+        "https://raw.githubusercontent.com/SIKV/Photos/assets/promo2.jpg",
+        "https://raw.githubusercontent.com/SIKV/Photos/assets/promo3.jpg"
+      ]
     },
     {
       "name": "News",
       "platform": "mobile",
-      "app_short_description": "The News app brings you news",
+      "short_description": "News aggregator",
+      "is_open_source": true,
       "url": "https://github.com/SIKV/News",
+      "points": [
+        "Designed and developed from scratch.",
+        "Works on both Android and iOS."
+      ],
+      "technologies": [
+        "Flutter", "Dart", "Flutter Flux"
+      ],
       "screenshots": [
         "https://github.com/SIKV/News/raw/assets/screenshot1.png?raw=true",
         "https://github.com/SIKV/News/blob/assets/screenshot2.png?raw=true",
@@ -51,20 +70,60 @@
       ]
     },
     {
-      "name": "VincitEAM",
-      "platform": "android",
-      "app_short_description": "Enterprise Asset Management",
-      "url": "https://www.vincit.fi/en/what-we-do/vincit-eam"
+      "name": "Q Prayer",
+      "platform": "mobile",
+      "short_description": "Connecting people in Prayer",
+      "url": "https://www.qprayer.com",
+      "technologies": [
+        "Android SDK", "Java", "MVP", "iOS SDK", "Swift", "MVVM", "Retrofit", "RxJava",
+        "ButterKnife", "Firebase", "Location Services", "Crashlytics", "Glide", "SwiftyJSON",
+        "SDWebImage", "Appodeal"
+      ]
     },
     {
-      "name": "Photos",
+      "name": "Quest.gl",
       "platform": "android",
-      "app_short_description": "Browse, search, download, and share amazing free photos",
-      "url": "https://github.com/SIKV/Photos",
+      "short_description": "Build better teams",
+      "url": "https://quest.gl",
+      "technologies": [
+        "Android SDK", "Kotlin", "MVVM", "Data Binding", "Firebase", "Auth0",
+        "Retrofit", "RxJava", "Crashlytics", "Glide", "LinkedIn SDK"
+      ],
       "screenshots": [
-        "https://github.com/SIKV/Photos/raw/assets/img1.png?raw=true",
-        "https://github.com/SIKV/Photos/raw/assets/img2.png?raw=true",
-        "https://github.com/SIKV/Photos/raw/assets/img4.png?raw=true"
+        "https://drive.google.com/uc?id=1pgbrCYtnFLVclFdvfw0Pe_w9LJE5E83O",
+        "https://drive.google.com/uc?id=1hVk-N08ODHZaN7gL76rVZ6UH_2zNy4nC",
+        "https://drive.google.com/uc?id=1w-6rvIw1Hk60Ma9qXTfZfDZg44H6T-wR"
+      ]
+    },
+    {
+      "name": "Find Words",
+      "platform": "android",
+      "short_description": "Find Words game template",
+      "url": "https://quickappninja.com",
+      "technologies": [
+        "Android SDK", "Java", "Retrolambda", "Google Play Services", "Google Play Games Services",
+        "Volley", "Facebook SDK", "Twitter SDK", "Gson", "ButterKnife", "Glide",
+        "Crashlytics", "Applovin", "Pollfish", "Consent SDK"
+      ]
+    },
+    {
+      "name": "CrowdJoy",
+      "platform": "android",
+      "short_description": "Turn live events into fun, stress-free experiences",
+      "url": "https://www.volo.global/solutions/mobile-development/crowdjoy",
+      "points": [
+        "Worked closely with a team of engineers, designers, and product managers.",
+        "Was responsible for implementing new solutions/feature-sets and maintaining."
+      ],
+      "technologies": [
+        "Android SDK", "Java", "MVP", "MapBox SDK",
+        "Location Sharing", "Beacons", "Custom Image Picker", "Custom Compass View"
+      ],
+      "screenshots": [
+        "https://drive.google.com/uc?id=18FFU4cISDLkQt4Eb5esAj8En8BUTeEhW",
+        "https://drive.google.com/uc?id=1Ezp9S8UchRnYWgk-TdTROpfK5e3nRrMW",
+        "https://drive.google.com/uc?id=1cOZniCr37oAiYHlrD0lfMYdRSKXS1GH9",
+        "https://drive.google.com/uc?id=1FLxdDQSBo6Nnkj1VqKJjwmHR9CoF2mjf"
       ]
     }
   ]
