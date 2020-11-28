@@ -13,15 +13,7 @@ class DataRepository {
     final jsonDecoded = await rootBundle.loadString(_path)
         .then((jsonData) => json.decode(jsonData));
 
-    return UserModel(
-      helloText: jsonDecoded['hello_text'],
-      headline: jsonDecoded['headline'],
-      subhead: jsonDecoded['subhead'],
-      avatarUrl: jsonDecoded['avatar_url'],
-      cvUrl: jsonDecoded['cv_url'],
-      linkedInUrl: jsonDecoded['linked_in_url'],
-      githubUrl: jsonDecoded['github_url'],
-    );
+    return UserModel.fromJson(jsonDecoded);
   }
 
   Future<List<ProjectModel>> fetchProjects() async {

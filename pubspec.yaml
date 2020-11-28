@@ -10,7 +10,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
-  font_awesome_flutter: 8.5.0
+  font_awesome_flutter: 8.10.0
   universal_html: ^1.1.4
   transparent_image: ^1.0.0
 

@@ -17,49 +17,49 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  DataBloc _dataBloc;
-  AppColors _appColors;
+  DataBloc dataBloc;
+  AppColors appColors;
 
   @override
   void initState() {
-    _dataBloc = DataBloc();
+    dataBloc = DataBloc();
 
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    _appColors = ThemeWidget.instanceOf(context).appColors;
+    appColors = ThemeWidget.instanceOf(context).appColors;
 
     super.didChangeDependencies();
   }
 
-  void _invertTheme(BuildContext context) {
+  void invertTheme(BuildContext context) {
     ThemeWidget.instanceOf(context).invertTheme();
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<UserModel>(
-      stream: _dataBloc.fetchUser(),
+      stream: dataBloc.fetchUser(),
       builder: (context, snapshot) {
         return Center(
           child: snapshot.hasData
-              ? _contentWidget(snapshot.data)
+              ? contentWidget(snapshot.data)
               : Container(),
         );
       },
     );
   }
 
-  Widget _contentWidget(UserModel model) {
+  Widget contentWidget(UserModel model) {
     return Center(
       child: rootLayout(context, <Widget>[
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _helloBubble(model.helloText),
+            helloBubble(),
 
             Padding(
               padding: const EdgeInsets.only(top: 24),
@@ -77,21 +77,21 @@ class _AboutPageState extends State<AboutPage> {
 
             Padding(
               padding: const EdgeInsets.only(top: 36),
-              child: _buttonsRow(model),
+              child: buttonsRow(model),
             ),
           ],
         ),
 
         SizedBox(width: AppDimens.sectionSpacing, height: AppDimens.sectionSpacing),
 
-        _avatarWidget(model.avatarUrl, () {
-          _invertTheme(context);
+        avatarWidget(model.avatarUrl, () {
+          invertTheme(context);
         }),
       ]),
     );
   }
 
-  Widget _helloBubble(String helloText) {
+  Widget helloBubble() {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
@@ -103,37 +103,39 @@ class _AboutPageState extends State<AboutPage> {
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 8),
-        child: Text(helloText,
-          style: Theme.of(context).textTheme.headline2,
+        child: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(text: '${AppStrings.hi} ', style: Theme.of(context).textTheme.headline2),
+              TextSpan(text: AppStrings.hiEmoji, style: TextStyle(fontSize: 18)),
+              TextSpan(text: ' ${AppStrings.iam}', style: Theme.of(context).textTheme.headline2),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buttonsRow(UserModel model) {
+  Widget buttonsRow(UserModel model) {
     final double spacing = 20;
 
     List<Widget> widgets = [];
 
-    if (model.cvUrl != null && model.cvUrl.isNotEmpty) {
-      widgets.addAll([
-        _cvButton(() {
-          openUrl(model.cvUrl);
-        }),
-
-        SizedBox(width: spacing)
-      ]);
-    }
-
     widgets.addAll([
-      _socialButton(FontAwesomeIcons.linkedinIn, _appColors.linkedInIconColor, () {
+      socialButton(FontAwesomeIcons.linkedinIn, appColors.linkedInIconColor, AppStrings.linkedIn, () {
         openUrl(model.linkedInUrl);
       }),
 
       SizedBox(width: spacing),
 
-      _socialButton(FontAwesomeIcons.githubAlt, _appColors.githubIconColor, () {
+      socialButton(FontAwesomeIcons.githubAlt, appColors.githubIconColor, AppStrings.github, () {
         openUrl(model.githubUrl);
+      }),
+
+      SizedBox(width: spacing),
+
+      socialButton(FontAwesomeIcons.mediumM, appColors.icon, AppStrings.medium, () {
+        openUrl(model.mediumUrl);
       })
     ]);
 
@@ -142,23 +144,17 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 
-  Widget _socialButton(IconData icon, Color iconColor, VoidCallback onPressed) {
+  Widget socialButton(IconData icon, Color iconColor, String tooltip, VoidCallback onPressed) {
     return IconButton(
       onPressed: onPressed,
-      iconSize: 19,
+      iconSize: 22,
       icon: Icon(icon, color: iconColor),
-      color: _appColors.transparent,
+      color: appColors.transparent,
+      tooltip: tooltip,
     );
   }
 
-  Widget _cvButton(VoidCallback onPressed) {
-    return Tooltip(
-      message: AppStrings.downloadCV,
-      child: _socialButton(FontAwesomeIcons.fileDownload, _appColors.icon, onPressed)
-    );
-  }
-
-  Widget _avatarWidget(String imageUrl, VoidCallback onTap) {
+  Widget avatarWidget(String imageUrl, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

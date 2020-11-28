@@ -5,7 +5,13 @@ class AppStrings {
   static const projects = 'Projects';
   static const education = 'Education';
 
-  static const downloadCV = 'Download CV';
+  static const hi = 'Hi';
+  static const hiEmoji = '✋';
+  static const iam = 'I am';
+
+  static const github = 'GitHub';
+  static const linkedIn = 'LinkedIn';
+  static const medium = 'Medium';
 
   static const openSource = 'Open Source';
   static const visitWebsite = 'Visit website';

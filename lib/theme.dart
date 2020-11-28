@@ -148,6 +148,7 @@ ThemeData _createTheme(BuildContext context, Brightness brightness, AppColors co
       ),
       textStyle: TextStyle(
         fontWeight: FontWeight.w600,
+        fontSize: 13,
       ),
     ),
 
