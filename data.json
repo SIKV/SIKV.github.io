@@ -15,6 +15,33 @@
     "end_year": "2017"
   },
 
+  "experience": [
+    {
+      "title": "Android developer",
+      "company": "Vincit",
+      "company_url": "https://www.vincit.fi/en",
+      "employment_type": "Contract",
+      "start_date": "Sep 2018",
+      "end_date": "Present"
+    },
+    {
+      "title": "Mobile developer",
+      "company": "Self-Employed",
+      "company_url": "",
+      "employment_type": "Freelance",
+      "start_date": "Jun 2017",
+      "end_date": "Sep 2018"
+    },
+    {
+      "title": "Android developer",
+      "company": "Volo",
+      "company_url": "https://www.volo.global",
+      "employment_type": "Full-time",
+      "start_date": "Feb 2016",
+      "end_date": "Jul 2017"
+    }
+  ],
+
   "projects": [
     {
       "name": "VincitEAM",

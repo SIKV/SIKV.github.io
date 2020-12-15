@@ -3,6 +3,7 @@ class AppStrings {
 
   static const about = 'About';
   static const projects = 'Projects';
+  static const experience = 'Experience';
   static const education = 'Education';
 
   static const hi = 'Hi';

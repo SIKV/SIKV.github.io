@@ -2,6 +2,7 @@ import 'package:cv/colors.dart';
 import 'package:cv/constants.dart';
 import 'package:cv/pages/about_page.dart';
 import 'package:cv/pages/education_page.dart';
+import 'package:cv/pages/experience_page.dart';
 import 'package:cv/pages/projects_page.dart';
 import 'package:cv/strings.dart';
 import 'package:cv/theme.dart';
@@ -14,59 +15,60 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
-  final _animationFrom = 0.5;
+  final animationFrom = 0.5;
 
-  AnimationController _animationController;
-  Animation<double> _scaleAnimation;
+  AnimationController animationController;
+  Animation<double> scaleAnimation;
 
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
 
-  List<Widget> _widgetOptions = <Widget>[
+  List<Widget> widgetOptions = <Widget>[
     AboutPage(),
     ProjectsPage(),
+    ExperiencePage(),
     EducationPage(),
   ];
 
-  AppColors _appColors;
+  AppColors appColors;
 
   @override
   void initState() {
     super.initState();
 
-    _animationController = AnimationController(
+    animationController = AnimationController(
       duration: const Duration(milliseconds: AppConstants.mainPageTransitionAnimationDuration),
       vsync: this,
     );
 
-    _scaleAnimation = CurvedAnimation(parent: _animationController,
+    scaleAnimation = CurvedAnimation(parent: animationController,
       curve: Curves.elasticInOut,
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _animationController.forward(from: _animationFrom);
+      animationController.forward(from: animationFrom);
     });
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    animationController.dispose();
 
     super.dispose();
   }
 
   @override
   void didChangeDependencies() {
-    _appColors = ThemeWidget.instanceOf(context).appColors;
+    appColors = ThemeWidget.instanceOf(context).appColors;
 
     super.didChangeDependencies();
   }
 
-  void _onItemTapped(int index) {
+  void onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
 
-      _animationController.reset();
-      _animationController.forward(from: _animationFrom);
+      animationController.reset();
+      animationController.forward(from: animationFrom);
     });
   }
 
@@ -75,13 +77,13 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     return Scaffold(
       body: Center(
         child: ScaleTransition(
-          scale: _scaleAnimation,
-          child: _widgetOptions.elementAt(_selectedIndex),
+          scale: scaleAnimation,
+          child: widgetOptions.elementAt(selectedIndex),
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
+        onTap: onItemTapped,
+        currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.person_rounded),
@@ -92,12 +94,16 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             label: AppStrings.projects,
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.view_list),
+            label: AppStrings.experience,
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.school_rounded),
             label: AppStrings.education,
           ),
         ],
-        selectedItemColor: _appColors.selectedItemColor,
-        unselectedItemColor: _appColors.unselectedItemColor,
+        selectedItemColor: appColors.selectedItemColor,
+        unselectedItemColor: appColors.unselectedItemColor,
         backgroundColor: Theme.of(context).primaryColor,
       ),
     );
