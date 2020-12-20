@@ -5,6 +5,7 @@ class ProjectModel {
   static const mobileColor = Color(0xFF6ECFF8);
   static const androidColor = Color(0xFF10C260);
 
+  final String id;
   final String name;
   final String platform;
   final String shortDescription;
@@ -15,6 +16,7 @@ class ProjectModel {
   final List<String> screenshots;
 
   ProjectModel({
+    this.id,
     this.name,
     this.platform,
     this.shortDescription,
@@ -26,7 +28,8 @@ class ProjectModel {
   });
 
   ProjectModel.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
+      : id = json['id'],
+        name = json['name'],
         platform = json['platform'] ?? '',
         shortDescription = json['short_description'] ?? '',
         openSource = json['is_open_source'] ?? false,

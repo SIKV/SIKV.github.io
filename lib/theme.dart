@@ -140,6 +140,12 @@ ThemeData _createTheme(BuildContext context, Brightness brightness, AppColors co
       ),
     ),
 
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.resolveWith((states) => colors.text)
+      ),
+    ),
+
     tooltipTheme: TooltipThemeData(
       verticalOffset: 48,
       decoration: BoxDecoration(

@@ -4,7 +4,6 @@ import 'package:cv/utils/utils.dart';
 import 'package:cv/widgets/experience_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class ExperiencePage extends StatefulWidget {
   @override
@@ -39,19 +38,16 @@ class _ExperiencePageState extends State<ExperiencePage> {
     );
   }
 
-  Widget contentWidget(List<ExperienceModel> experience) {
-    return ListView.separated(
-      padding: const EdgeInsets.all(24),
-      shrinkWrap: true,
-      itemCount: experience.length,
-      itemBuilder: (context, index) => Align(
-        alignment: Alignment.center,
-        child: ExperienceItem(
+  Widget contentWidget(List<ExperienceModel> experiences) {
+    return rootLayout(context, [
+      Wrap(
+        spacing: 24,
+        runSpacing: 24,
+        children: experiences.map((experience) => ExperienceItem(
           onCompanyPressed: onCompanyPressed,
-          experienceModel: experience[index],
-        ),
+          experienceModel: experience,
+        )).toList(),
       ),
-      separatorBuilder: (context, index) => SizedBox(height: 24),
-    );
+    ]);
   }
 }

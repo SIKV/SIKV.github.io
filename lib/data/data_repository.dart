@@ -17,7 +17,7 @@ class DataRepository {
     return UserModel.fromJson(jsonDecoded);
   }
 
-  Future<List<ProjectModel>> fetchProjects() async {
+  Future<List<ProjectModel>> fetchProjects({Set<String> ids}) async {
     final jsonDecoded = await rootBundle.loadString(_path)
         .then((jsonData) => json.decode(jsonData));
 
@@ -27,7 +27,11 @@ class DataRepository {
       projects.add(ProjectModel.fromJson(projectJson));
     });
 
-    return projects;
+    if (ids != null) {
+      return projects.where((project) => ids.contains(project.id)).toList();
+    } else {
+      return projects;
+    }
   }
 
   Future<List<ExperienceModel>> fetchExperience() async {

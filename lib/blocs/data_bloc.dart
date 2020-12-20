@@ -10,8 +10,8 @@ class DataBloc {
   Stream<UserModel> fetchUser() =>
       _dataRepository.fetchUser().asStream().asBroadcastStream();
 
-  Stream<List<ProjectModel>> fetchProjects() =>
-      _dataRepository.fetchProjects().asStream().asBroadcastStream();
+  Stream<List<ProjectModel>> fetchProjects({Set<String> ids}) =>
+      _dataRepository.fetchProjects(ids: ids).asStream().asBroadcastStream();
 
   Stream<List<ExperienceModel>> fetchExperience() =>
       _dataRepository.fetchExperience().asStream().asBroadcastStream();
