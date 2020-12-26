@@ -32,7 +32,7 @@
       "employment_type": "Freelance",
       "start_date": "Jun 2017",
       "end_date": "Sep 2018",
-      "projects": ["qprayer", "questgl", "findwords"]
+      "projects": ["findwords", "quizzes", "questgl", "qprayer"]
     },
     {
       "title": "Android developer",
@@ -129,6 +129,12 @@
         "https://drive.google.com/uc?id=1hVk-N08ODHZaN7gL76rVZ6UH_2zNy4nC",
         "https://drive.google.com/uc?id=1w-6rvIw1Hk60Ma9qXTfZfDZg44H6T-wR"
       ]
+    },
+    {
+      "id": "quizzes",
+      "name": "Quizzes",
+      "platform": "android",
+      "short_description": ""
     },
     {
       "id": "findwords",

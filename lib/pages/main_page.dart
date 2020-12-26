@@ -94,7 +94,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             label: AppStrings.projects,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.view_list),
+            icon: Icon(Icons.amp_stories_rounded),
             label: AppStrings.experience,
           ),
           BottomNavigationBarItem(

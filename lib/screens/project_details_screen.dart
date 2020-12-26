@@ -20,7 +20,7 @@ class ProjectDetailsScreen extends StatefulWidget {
 class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with TickerProviderStateMixin {
   static const double horizontalPadding = 24;
 
-  void openAppUrl() {
+  void onVisitWebsitePressed() {
     openUrl(widget.project.url);
   }
 
@@ -97,7 +97,7 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
       ),
       actions: [
         IconButton(
-          onPressed: openAppUrl,
+          onPressed: onVisitWebsitePressed,
           icon: Icon(Icons.public_rounded),
           tooltip: AppStrings.visitWebsite,
         ),
@@ -107,8 +107,20 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
 
   Widget infoWidget() {
     List<Widget> children = [];
-
     children.add(spaceSeparator());
+
+    /**
+     * Visit website.
+     */
+    if (widget.project.url.isNotEmpty) {
+      Widget visitWebsiteButton = OutlinedButton(
+        onPressed: onVisitWebsitePressed,
+        child: Text(AppStrings.visitWebsite),
+      );
+
+      children.add(hPadding(visitWebsiteButton));
+      children.add(spaceSeparator());
+    }
 
     /**
      * Points.
