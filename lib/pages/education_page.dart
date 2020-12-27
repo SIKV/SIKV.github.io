@@ -65,10 +65,10 @@ class _EducationPageState extends State<EducationPage> {
               ),
             ),
 
-            SizedBox(height: 12),
+            SizedBox(height: 16),
 
-            Text('${model.startYear} - ${model.endYear}',
-              style: Theme.of(context).textTheme.subtitle1,
+            Chip(
+              label: Text('${model.startYear} - ${model.endYear}'),
             ),
           ],
         ),

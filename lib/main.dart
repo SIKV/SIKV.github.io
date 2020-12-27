@@ -1,6 +1,6 @@
 import 'package:cv/pages/main_page.dart';
 import 'package:cv/strings.dart';
-import 'package:cv/theme.dart';
+import 'package:cv/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(

@@ -23,22 +23,22 @@ abstract class AppColors {
 
 class AppColorsLight extends AppColors {
   @override
-  Color get primary => Color(0xFFF6F6F6);
+  Color get primary => Color(0xFFF4F4F4);
 
   @override
   Color get background => Color(0xFFFDFDFD);
 
   @override
-  Color get text => Color(0xFF404040);
+  Color get text => Color(0xFF252525);
 
   @override
   Color get icon => Color(0xFF404040);
 
   @override
-  Color get subtitle1 => Color(0xFF808080);
+  Color get subtitle1 => Color(0xFF606060);
 
   @override
-  Color get bodyText1 => Color(0xFF757575);
+  Color get bodyText1 => Color(0xFF353535);
 
   @override
   Color get selectedItemColor => Color(0xFF404040);

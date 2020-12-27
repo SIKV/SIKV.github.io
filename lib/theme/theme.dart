@@ -1,4 +1,4 @@
-import 'package:cv/colors.dart';
+import 'package:cv/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 enum AppTheme {

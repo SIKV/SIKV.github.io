@@ -20,4 +20,6 @@ class AppStrings {
   static const screenshots = 'Screenshots';
 
   static const pointSymbol = '•';
+
+  static const madeWith = 'Made with';
 }

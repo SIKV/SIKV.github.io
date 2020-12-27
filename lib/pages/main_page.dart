@@ -1,11 +1,11 @@
-import 'package:cv/colors.dart';
+import 'package:cv/theme/colors.dart';
 import 'package:cv/constants.dart';
 import 'package:cv/pages/about_page.dart';
 import 'package:cv/pages/education_page.dart';
 import 'package:cv/pages/experience_page.dart';
 import 'package:cv/pages/projects_page.dart';
 import 'package:cv/strings.dart';
-import 'package:cv/theme.dart';
+import 'package:cv/theme/theme.dart';
 import 'package:cv/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 

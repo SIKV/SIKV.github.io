@@ -1,10 +1,12 @@
 import 'package:cv/blocs/data_bloc.dart';
-import 'package:cv/colors.dart';
+import 'package:cv/constants.dart';
 import 'package:cv/dimens.dart';
 import 'package:cv/models/user_model.dart';
 import 'package:cv/strings.dart';
-import 'package:cv/theme.dart';
+import 'package:cv/theme/colors.dart';
+import 'package:cv/theme/theme.dart';
 import 'package:cv/utils/utils.dart';
+import 'package:cv/widgets/made_with_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -20,9 +22,17 @@ class _AboutPageState extends State<AboutPage> {
   DataBloc dataBloc;
   AppColors appColors;
 
+  double madeWithFlutterOpacity = 0;
+
   @override
   void initState() {
     dataBloc = DataBloc();
+
+    Future.delayed(const Duration(milliseconds: AppConstants.mainPageTransitionAnimationDuration), () {
+      setState(() {
+        madeWithFlutterOpacity = 1;
+      });
+    });
 
     super.initState();
   }
@@ -34,7 +44,7 @@ class _AboutPageState extends State<AboutPage> {
     super.didChangeDependencies();
   }
 
-  void invertTheme(BuildContext context) {
+  void onInvertThemePressed() {
     ThemeWidget.instanceOf(context).invertTheme();
   }
 
@@ -43,52 +53,69 @@ class _AboutPageState extends State<AboutPage> {
     return StreamBuilder<UserModel>(
       stream: dataBloc.fetchUser(),
       builder: (context, snapshot) {
-        return Center(
-          child: snapshot.hasData
-              ? contentWidget(snapshot.data)
-              : Container(),
-        );
+        return snapshot.hasData
+            ? contentWidgetWrapper(snapshot.data)
+            : Container();
       },
     );
   }
 
-  Widget contentWidget(UserModel model) {
-    return Center(
-      child: rootLayout(context, <Widget>[
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            helloBubble(),
-
-            Padding(
-              padding: const EdgeInsets.only(top: 24),
-              child: Text(model.headline,
-                style: Theme.of(context).textTheme.headline1,
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 4, top: 4),
-              child: Text(model.subhead,
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(top: 36),
-              child: buttonsRow(model),
-            ),
-          ],
+  Widget contentWidgetWrapper(UserModel model) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: contentWidget(model),
         ),
 
-        SizedBox(width: AppDimens.sectionSpacing, height: AppDimens.sectionSpacing),
-
-        avatarWidget(model.avatarUrl, () {
-          invertTheme(context);
-        }),
-      ]),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            child: AnimatedOpacity(
+              opacity: madeWithFlutterOpacity,
+              duration: const Duration(milliseconds: AppConstants.madeWithFlutterAnimationDuration),
+              child: MadeWithFlutter(),
+            ),
+          ),
+        ),
+      ],
     );
+  }
+
+  Widget contentWidget(UserModel model) {
+    return rootLayout(context, <Widget>[
+      Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          helloBubble(),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 24),
+            child: Text(model.headline,
+              style: Theme.of(context).textTheme.headline1,
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 4, top: 4),
+            child: Text(model.subhead,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 36),
+            child: buttonsRow(model),
+          ),
+        ],
+      ),
+
+      SizedBox(width: AppDimens.sectionSpacing, height: AppDimens.sectionSpacing),
+
+      avatarWidget(model.avatarUrl, onInvertThemePressed),
+    ]);
   }
 
   Widget helloBubble() {
