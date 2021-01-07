@@ -53,8 +53,8 @@
       "short_description": "Uncomplicated Enterprise Asset Management Software",
       "url": "https://www.vincit.fi/en/what-we-do/vincit-eam",
       "technologies": [
-        "Android SDK", "Kotlin", "MVP", "Work Manager", "Room", "RxJava",
-        "Retrofit", "App Center Distribution", "Google Maps SDK"
+        "Android SDK", "Kotlin", "App Center SDK", "Work Manager", "Room", "Motion Layout",
+        "RxJava", "Retrofit", "Google Maps SDK"
       ],
       "screenshots": [
         "https://drive.google.com/uc?id=1GQnrd6Gi5pk_NVCM2xIyLNWHcjWd6aNP",
@@ -72,9 +72,9 @@
         "Designed and developed from scratch."
       ],
       "technologies": [
-        "Android SDK", "Kotlin", "MVVM", "Material Components", "Android Architecture Components",
-        "Dagger", "Retrofit", "Kotlin Coroutines", "Firebase Authentication", "Cloud Firestore",
-        "Firebase Remote Config", "ML Kit", "Glide", "Chrome Custom Tabs"
+        "Android SDK", "Kotlin", "Material Components", "Android Architecture Components",
+        "Hilt", "Paging 3", "Room" ,"Retrofit", "Kotlin Coroutines", "Firebase Authentication",
+        "Cloud Firestore", "Firebase Remote Config", "ML Kit", "Glide", "Chrome Custom Tabs"
       ],
       "screenshots": [
         "https://raw.githubusercontent.com/SIKV/Photos/assets/promo1.jpg",
@@ -94,7 +94,7 @@
         "Works on both Android and iOS."
       ],
       "technologies": [
-        "Flutter", "Dart", "Flutter Flux"
+        "Flutter", "Dart", "Flutter Flux", "Shared Preferences"
       ],
       "screenshots": [
         "https://github.com/SIKV/News/raw/assets/screenshot1.png?raw=true",
@@ -109,7 +109,7 @@
       "short_description": "Connecting people in Prayer",
       "url": "https://www.qprayer.com",
       "technologies": [
-        "Android SDK", "Java", "MVP", "iOS SDK", "Swift", "MVVM", "Retrofit", "RxJava",
+        "Android SDK", "Java", "iOS SDK", "Swift", "Retrofit", "RxJava",
         "ButterKnife", "Firebase", "Location Services", "Crashlytics", "Glide", "SwiftyJSON",
         "SDWebImage", "Appodeal"
       ]
@@ -121,7 +121,7 @@
       "short_description": "Build better teams",
       "url": "https://quest.gl",
       "technologies": [
-        "Android SDK", "Kotlin", "MVVM", "Data Binding", "Firebase", "Auth0",
+        "Android SDK", "Kotlin", "Data Binding", "Firebase", "Auth0",
         "Retrofit", "RxJava", "Crashlytics", "Glide", "LinkedIn SDK"
       ],
       "screenshots": [
@@ -134,7 +134,7 @@
       "id": "quizzes",
       "name": "Quizzes",
       "platform": "android",
-      "short_description": ""
+      "short_description": "Quizzes game template"
     },
     {
       "id": "findwords",
@@ -159,8 +159,7 @@
         "Was responsible for implementing new solutions/feature-sets and maintaining."
       ],
       "technologies": [
-        "Android SDK", "Java", "MVP", "MapBox SDK",
-        "Location Sharing", "Beacons", "Custom Image Picker", "Custom Compass View"
+        "Android SDK", "Java", "MapBox SDK", "Location Sharing", "Beacons", "Custom Views"
       ],
       "screenshots": [
         "https://drive.google.com/uc?id=18FFU4cISDLkQt4Eb5esAj8En8BUTeEhW",
