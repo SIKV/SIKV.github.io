@@ -15,15 +15,46 @@
     "end_year": "2017"
   },
 
+  "experience": [
+    {
+      "title": "Android developer",
+      "company": "Vincit",
+      "company_url": "https://www.vincit.fi/en",
+      "employment_type": "Contract",
+      "start_date": "Sep 2018",
+      "end_date": "Present",
+      "projects": ["vinciteam"]
+    },
+    {
+      "title": "Mobile developer",
+      "company": "Self-Employed",
+      "company_url": "",
+      "employment_type": "Freelance",
+      "start_date": "Jun 2017",
+      "end_date": "Sep 2018",
+      "projects": ["findwords", "quizzes", "questgl", "qprayer"]
+    },
+    {
+      "title": "Android developer",
+      "company": "Volo",
+      "company_url": "https://www.volo.global",
+      "employment_type": "Full-time",
+      "start_date": "Feb 2016",
+      "end_date": "Jul 2017",
+      "projects": ["crowdjoy"]
+    }
+  ],
+
   "projects": [
     {
+      "id": "vinciteam",
       "name": "VincitEAM",
       "platform": "android",
       "short_description": "Uncomplicated Enterprise Asset Management Software",
       "url": "https://www.vincit.fi/en/what-we-do/vincit-eam",
       "technologies": [
-        "Android SDK", "Kotlin", "MVP", "Work Manager", "Room", "RxJava",
-        "Retrofit", "App Center Distribution", "Google Maps SDK"
+        "Android SDK", "Kotlin", "App Center SDK", "Work Manager", "Room", "Motion Layout",
+        "RxJava", "Retrofit", "Google Maps SDK"
       ],
       "screenshots": [
         "https://drive.google.com/uc?id=1GQnrd6Gi5pk_NVCM2xIyLNWHcjWd6aNP",
@@ -31,6 +62,7 @@
       ]
     },
     {
+      "id": "photos",
       "name": "Photos",
       "platform": "android",
       "short_description": "Amazing free photos",
@@ -40,9 +72,9 @@
         "Designed and developed from scratch."
       ],
       "technologies": [
-        "Android SDK", "Kotlin", "MVVM", "Material Components", "Android Architecture Components",
-        "Dagger", "Retrofit", "Kotlin Coroutines", "Firebase Authentication", "Cloud Firestore",
-        "Firebase Remote Config", "ML Kit", "Glide", "Chrome Custom Tabs"
+        "Android SDK", "Kotlin", "Material Components", "Android Architecture Components",
+        "Hilt", "Paging 3", "Room" ,"Retrofit", "Kotlin Coroutines", "Firebase Authentication",
+        "Cloud Firestore", "Firebase Remote Config", "ML Kit", "Glide", "Chrome Custom Tabs"
       ],
       "screenshots": [
         "https://raw.githubusercontent.com/SIKV/Photos/assets/promo1.jpg",
@@ -51,6 +83,7 @@
       ]
     },
     {
+      "id": "news",
       "name": "News",
       "platform": "mobile",
       "short_description": "News aggregator",
@@ -61,7 +94,7 @@
         "Works on both Android and iOS."
       ],
       "technologies": [
-        "Flutter", "Dart", "Flutter Flux"
+        "Flutter", "Dart", "Flutter Flux", "Shared Preferences"
       ],
       "screenshots": [
         "https://github.com/SIKV/News/raw/assets/screenshot1.png?raw=true",
@@ -70,23 +103,25 @@
       ]
     },
     {
+      "id": "qprayer",
       "name": "Q Prayer",
       "platform": "mobile",
       "short_description": "Connecting people in Prayer",
       "url": "https://www.qprayer.com",
       "technologies": [
-        "Android SDK", "Java", "MVP", "iOS SDK", "Swift", "MVVM", "Retrofit", "RxJava",
+        "Android SDK", "Java", "iOS SDK", "Swift", "Retrofit", "RxJava",
         "ButterKnife", "Firebase", "Location Services", "Crashlytics", "Glide", "SwiftyJSON",
         "SDWebImage", "Appodeal"
       ]
     },
     {
+      "id": "questgl",
       "name": "Quest.gl",
       "platform": "android",
       "short_description": "Build better teams",
       "url": "https://quest.gl",
       "technologies": [
-        "Android SDK", "Kotlin", "MVVM", "Data Binding", "Firebase", "Auth0",
+        "Android SDK", "Kotlin", "Data Binding", "Firebase", "Auth0",
         "Retrofit", "RxJava", "Crashlytics", "Glide", "LinkedIn SDK"
       ],
       "screenshots": [
@@ -96,6 +131,13 @@
       ]
     },
     {
+      "id": "quizzes",
+      "name": "Quizzes",
+      "platform": "android",
+      "short_description": "Quizzes game template"
+    },
+    {
+      "id": "findwords",
       "name": "Find Words",
       "platform": "android",
       "short_description": "Find Words game template",
@@ -107,6 +149,7 @@
       ]
     },
     {
+      "id": "crowdjoy",
       "name": "CrowdJoy",
       "platform": "android",
       "short_description": "Turn live events into fun, stress-free experiences",
@@ -116,8 +159,7 @@
         "Was responsible for implementing new solutions/feature-sets and maintaining."
       ],
       "technologies": [
-        "Android SDK", "Java", "MVP", "MapBox SDK",
-        "Location Sharing", "Beacons", "Custom Image Picker", "Custom Compass View"
+        "Android SDK", "Java", "MapBox SDK", "Location Sharing", "Beacons", "Custom Views"
       ],
       "screenshots": [
         "https://drive.google.com/uc?id=18FFU4cISDLkQt4Eb5esAj8En8BUTeEhW",
