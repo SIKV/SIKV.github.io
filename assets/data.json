@@ -58,7 +58,9 @@
       ],
       "screenshots": [
         "https://drive.google.com/uc?id=1GQnrd6Gi5pk_NVCM2xIyLNWHcjWd6aNP",
-        "https://drive.google.com/uc?id=1xomYhjXYiLkL3J57gax7S5CqSR9XttYY"
+        "https://drive.google.com/uc?id=1xomYhjXYiLkL3J57gax7S5CqSR9XttYY",
+        "https://drive.google.com/uc?id=1sZN48452V8J96viT6JxBXOjQN7oF-OHY",
+        "https://drive.google.com/uc?id=1Ukzjn_1uSrY9qDtfF9kU4ttGdLg0bywp"
       ]
     },
     {
@@ -109,9 +111,14 @@
       "short_description": "Connecting people in Prayer",
       "url": "https://www.qprayer.com",
       "technologies": [
-        "Android SDK", "Java", "iOS SDK", "Swift", "Retrofit", "RxJava",
+        "Android SDK", "iOS SDK", "Java", "Swift", "Retrofit", "RxJava",
         "ButterKnife", "Firebase", "Location Services", "Crashlytics", "Glide", "SwiftyJSON",
         "SDWebImage", "Appodeal"
+      ],
+      "screenshots": [
+        "https://drive.google.com/uc?id=1A1QHOL4Zh5J9S7wWji7eVKkJQy9wEKj_",
+        "https://drive.google.com/uc?id=1p63jv6EhhIVS9ISfh-O7F_K9JF99jpFX",
+        "https://drive.google.com/uc?id=1T1tPZLkaM-lGjLd_sXCU6PRT1m22aCv1"
       ]
     },
     {
@@ -134,7 +141,20 @@
       "id": "quizzes",
       "name": "Quizzes",
       "platform": "android",
-      "short_description": "Quizzes game template"
+      "short_description": "Quizzes game template",
+      "url": "https://quickappninja.com",
+      "technologies": [
+        "Android SDK", "Java", "Retrolambda", "Volley", "ButterKnife", "Glide", "Crashlytics",
+        "Twitter SDK", "Facebook SDK", "Play Services", "Play Services Ads",
+        "Applovin SDK", "Adcolony SDK"
+      ],
+      "screenshots": [
+        "https://drive.google.com/uc?id=1zK5YMl1gyJQCNpVw7MMBftZx4GjaDpIo",
+        "https://drive.google.com/uc?id=1jVaAw-pw1xQ1RYPebSQ3PgAOAaTrEKli",
+        "https://drive.google.com/uc?id=1_xjK251bJvl-PiPIqGnCIkr5kw1l4BDv",
+        "https://drive.google.com/uc?id=1eA0q8fV5panu3IoK7Riq9qCQLUbbLx7g",
+        "https://drive.google.com/uc?id=1mOl2gbJV80n0sFEETSRlz7fbBT2K25bx"
+      ]
     },
     {
       "id": "findwords",
@@ -143,9 +163,14 @@
       "short_description": "Find Words game template",
       "url": "https://quickappninja.com",
       "technologies": [
-        "Android SDK", "Java", "Retrolambda", "Google Play Services", "Google Play Games Services",
-        "Volley", "Facebook SDK", "Twitter SDK", "Gson", "ButterKnife", "Glide",
-        "Crashlytics", "Applovin", "Pollfish", "Consent SDK"
+        "Android SDK", "Java", "Retrolambda", "Volley", "ButterKnife", "Glide", "Crashlytics",
+        "Twitter SDK", "Facebook SDK", "Play Services", "Play Services Ads", "Pollfish",
+        "Applovin SDK", "Consent Library"
+      ],
+      "screenshots": [
+        "https://drive.google.com/uc?id=1sbsjPBuEKHG7SeDTILS3gRcrpIxNq2Gy",
+        "https://drive.google.com/uc?id=1z4y9XgFDywEhsYZfpt127py_2KXTvPMK",
+        "https://drive.google.com/uc?id=1igpT4vkbmLESXrE1kbSH4ZhnfJYI9Vc9"
       ]
     },
     {
