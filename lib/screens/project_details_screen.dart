@@ -1,6 +1,8 @@
 import 'package:cv/constants.dart';
 import 'package:cv/dimens.dart';
 import 'package:cv/models/project_model.dart';
+import 'package:cv/routes/slide_top_route.dart';
+import 'package:cv/screens/image_preview_screen.dart';
 import 'package:cv/strings.dart';
 import 'package:cv/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,15 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
 
   void onVisitWebsitePressed() {
     openUrl(widget.project.url);
+  }
+
+  void onScreenshotPressed(String imageUrl) {
+    Navigator.push(context, SlideTopRoute(
+      opaque: false,
+      page: ImagePreviewScreen(
+        imageUrl: imageUrl,
+      ),
+    ));
   }
 
   @override
@@ -209,15 +220,18 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> with Ticker
         scrollDirection: Axis.horizontal,
         itemCount: screenshots.length,
         itemBuilder: (context, index) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: Container(
-              padding: const EdgeInsets.all(4),
-              width: AppDimens.projectDetailsScreenshotWidth,
-              color: Theme.of(context).primaryColor,
-              child: FadeInImage.memoryNetwork(
-                placeholder: kTransparentImage,
-                image: screenshots[index],
+          return InkWell(
+            onTap: () => onScreenshotPressed(screenshots[index]),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                width: AppDimens.projectDetailsScreenshotWidth,
+                color: Theme.of(context).primaryColor,
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: screenshots[index],
+                ),
               ),
             ),
           );
